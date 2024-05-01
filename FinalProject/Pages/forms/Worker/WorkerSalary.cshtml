@@ -1,0 +1,40 @@
+﻿@page
+@model FinalProject.Pages.forms.Worker.WorkerSalaryModel
+@{
+    Layout = "/Pages/Shared/_LayoutEmployee.cshtml";
+}
+
+<div class="container">
+    <div class="text-center">
+        <h1>Salary Record</h1>
+    </div>
+
+    <table class="table table-striped table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Paid Amount</th>
+                <th scope="col">Paid Date</th>
+                <th scope="col">Pay Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var e in Model.employees)
+            {
+                <tr>
+                    <td>@e.Salary</td>
+                    <td>@e.PaidDate.ToShortDateString()</td>
+                    <td>
+                        @if (e.IsPaid)
+                        {
+                            <span class="text-success">Paid</span>
+                        }
+                        else
+                        {
+                            <span class="text-danger">Not Paid</span>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

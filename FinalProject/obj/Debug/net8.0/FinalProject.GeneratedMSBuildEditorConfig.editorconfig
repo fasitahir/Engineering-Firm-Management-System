@@ -1,0 +1,75 @@
+is_global = true
+build_property.TargetFramework = net8.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = FinalProject
+build_property.RootNamespace = FinalProject
+build_property.ProjectDir = D:\FasiTahir\4th Semester\DB\FinalProjectDB\FinalProject\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 8.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = D:\FasiTahir\4th Semester\DB\FinalProjectDB\FinalProject
+build_property._RazorSourceGeneratorDebug = 
+
+[D:/FasiTahir/4th Semester/DB/FinalProjectDB/FinalProject/Pages/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/FasiTahir/4th Semester/DB/FinalProjectDB/FinalProject/Pages/forms/aboutUs.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcZm9ybXNcYWJvdXRVcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/FasiTahir/4th Semester/DB/FinalProjectDB/FinalProject/Pages/forms/ApplyNow.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcZm9ybXNcQXBwbHlOb3cuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/FasiTahir/4th Semester/DB/FinalProjectDB/FinalProject/Pages/forms/Inventory Manager/InventoryManagerHome.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcZm9ybXNcSW52ZW50b3J5IE1hbmFnZXJcSW52ZW50b3J5TWFuYWdlckhvbWUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/FasiTahir/4th Semester/DB/FinalProjectDB/FinalProject/Pages/forms/Worker/WorkerHome.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcZm9ybXNcV29ya2VyXFdvcmtlckhvbWUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/FasiTahir/4th Semester/DB/FinalProjectDB/FinalProject/Pages/forms/Worker/WorkerSalary.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcZm9ybXNcV29ya2VyXFdvcmtlclNhbGFyeS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/FasiTahir/4th Semester/DB/FinalProjectDB/FinalProject/Pages/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/FasiTahir/4th Semester/DB/FinalProjectDB/FinalProject/Pages/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJpdmFjeS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/FasiTahir/4th Semester/DB/FinalProjectDB/FinalProject/Pages/Shared/_LayoutEmployee.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXRFbXBsb3llZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/FasiTahir/4th Semester/DB/FinalProjectDB/FinalProject/Pages/Shared/_LayoutInventoryManager.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXRJbnZlbnRvcnlNYW5hZ2VyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/FasiTahir/4th Semester/DB/FinalProjectDB/FinalProject/Pages/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/FasiTahir/4th Semester/DB/FinalProjectDB/FinalProject/Pages/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/FasiTahir/4th Semester/DB/FinalProjectDB/FinalProject/Pages/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/FasiTahir/4th Semester/DB/FinalProjectDB/FinalProject/Pages/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-srxpow6wk7
