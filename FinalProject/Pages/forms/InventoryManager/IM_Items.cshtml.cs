@@ -1,13 +1,12 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace FinalProject.Pages.forms
+namespace FinalProject.Pages.forms.InventoryManager
 {
-    public class aboutUsModel : PageModel
+    public class IM_ItemsModel : PageModel
     {
         public void OnGet()
         {
-
         }
     }
 }

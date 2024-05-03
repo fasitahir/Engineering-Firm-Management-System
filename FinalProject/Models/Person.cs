@@ -9,9 +9,13 @@
         public string? AlternatePhone { get; set;}
         public string CNIC { get; set; }
         public string Address { get; set; }
-        public DateOnly DateOfBirth { get; set; }
-        public string Gender { get; set; }
-        public IFormFile CV { get; set; }
-        public IFormFile Picture { get; set; }
+        public DateTime DateOfBirth { get; set; }
+        public int Gender { get; set; }
+
+        public int DesiredDesignation { get; set; }
+
+        public IFormFile? CV { get; set; }
+        public IFormFile? Picture { get; set; }
+
     }
 }

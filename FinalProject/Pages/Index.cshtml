@@ -1,10 +1,31 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Home";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container mt-4 d-flex justify-content-center">
+
+    <form class="form-inline ml-auto" method="post" action="">
+        <input type="text" name="userName" class="form-control mr-2" placeholder="Username" asp-for="credential.userName">
+
+        <input type="password" name="password" class="form-control mr-2" placeholder="Password" asp-for="credential.password">
+        <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+
 </div>
+
+
+<h1>Welcome to Ambala Engineering</h1>
+<h2>Revolutionizing Construction and Material Supply Industry</h2>
+<p>
+    Ambala Engineering stands at the forefront of innovation in the construction and material supply industry. With a rich history of serving esteemed clients like Nestle, PepsiCo, and many others, we take pride in delivering top-notch services that exceed expectations.
+</p>
+<h3>Our Services:</h3>
+<ul>
+    <li><strong>Construction Services:</strong> From waste removal to temporary site security, and from engineering to architectural and surveying services, we ensure that every construction project is executed flawlessly.</li>
+    <li><strong>Material Supply:</strong> We supply all the raw materials needed for construction projects, including lumber, concrete, steel, roofing materials, electrical components, plumbing supplies, and machinery parts. Our extensive network of suppliers ensures timely delivery and top-quality materials.</li>
+</ul>
+<p>
+    Ambala Engineering is committed to embracing digital transformation to enhance security, management, reporting, and efficiency. Our online recruitment system, enhanced data management, and streamlined operations ensure seamless processes for our clients and employees.
+</p>

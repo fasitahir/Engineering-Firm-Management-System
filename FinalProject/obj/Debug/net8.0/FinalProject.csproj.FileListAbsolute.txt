@@ -36,3 +36,4 @@ D:\FasiTahir\4th Semester\DB\FinalProjectDB\FinalProject\bin\Debug\net8.0\runtim
 D:\FasiTahir\4th Semester\DB\FinalProjectDB\FinalProject\bin\Debug\net8.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
 D:\FasiTahir\4th Semester\DB\FinalProjectDB\FinalProject\obj\Debug\net8.0\FinalProject.csproj.AssemblyReference.cache
 D:\FasiTahir\4th Semester\DB\FinalProjectDB\FinalProject\obj\Debug\net8.0\FinalProject.csproj.CopyComplete
+D:\FasiTahir\4th Semester\DB\FinalProjectDB\FinalProject\obj\Debug\net8.0\FinalProject.sourcelink.json

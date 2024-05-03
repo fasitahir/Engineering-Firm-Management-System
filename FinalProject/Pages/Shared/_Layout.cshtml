@@ -1,68 +1,67 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - FinalProject</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/FinalProject.styles.css" asp-append-version="true" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"] - Ambala Engineering</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">FinalProject</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
-                        </li>
+    <!-- Navigation bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" asp-area="" asp-page="/Index">
+                <img src="~/logo.png" alt="Ambala Engineering Logo" width="60" height="60">
+                <span style="color: red;">Ambala</span>
+                <span style="color: white;">Engineering</span>
+            </a>
 
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/forms/ApplyNow">ApplyNow</a>
-                        </li>
+            <!-- Update the form to include IDs for the email and password input fields -->
 
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/forms/aboutUs">About Us</a>
-                        </li>
+            <ul class="nav nav-underline">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/Index">Home</a>
+                </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/forms/Worker/WorkerHome">Workers</a>
-                        </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/forms/IventoryManager/IventoryManagerHome">InventoryManager</a>
-                        </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/forms/aboutUs">About Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Vision</a>
+                </li>
+                <li class="nav-item apply-now">
+                    <a class="nav-link" href="/forms/ApplyNow">Apply Now</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-page="/forms/Worker/WorkerHome">Workers</a>
+                </li>
 
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-page="/forms/InventoryManager/IMHome">InventoryManager</a>
+                </li>
+
+            </ul>
+
+        </div>
+    </nav>
+
+    <!-- Page content -->
     <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+        @RenderBody()
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2024 - FinalProject - <a asp-area="" asp-page="/Privacy">Privacy</a>
-        </div>
+    <!-- Footer -->
+    <footer class="footer">
+        © @DateTime.Now.Year Ambala Engineering. All rights reserved.
     </footer>
 
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-
-    @await RenderSectionAsync("Scripts", required: false)
+    <!-- Optional: Include Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

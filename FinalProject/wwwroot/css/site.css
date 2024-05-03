@@ -1,23 +1,82 @@
-html {
-  font-size: 14px;
-}
-
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
-}
-
 body {
-  margin-bottom: 60px;
+    background-color: #F0ECE5;
+    margin-bottom: 80px;
 }
 
+
+.footer {
+
+}
+
+.navbar {
+    background-color: #161A30;
+    color: #B6BBC4;
+}
+
+.navbar-brand {
+    color: #B6BBC4;
+    font-weight: bold;
+}
+
+.form-control {
+    border-color: #31304D;
+}
+
+.btn-primary {
+    background-color: #31304D;
+    border-color: #31304D;
+}
+
+.btn-apply {
+    background-color: #B6BBC4;
+    border-color: #B6BBC4;
+    color: #161A30;
+    font-weight: bold;
+}
+/* Navigation animation styles */
+.nav-link {
+    transition: color 0.3s ease-in-out;
+}
+
+    .nav-link:hover {
+        color: #FF5733; /* Change to desired hover color */
+    }
+/* Define animation for all nav items */
+.nav-item .nav-link:hover {
+    animation: pulse 0.5s infinite;
+}
+
+/* Define animation */
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+}
+/* Apply additional styling to the "Apply Now" button */
+.nav-item.apply-now .nav-link {
+    background-color: #1c5acd; /* Change to desired background color */
+    color: #FFFFFF; /* Change to desired text color */
+    border-radius: 5px; /* Add rounded corners */
+    padding: 8px 16px; /* Add padding */
+    font-weight: bold; /* Add bold font weight */
+}
+
+    .nav-item.apply-now .nav-link:hover {
+        background-color: #FF814A; /* Change to desired hover background color */
+        color: #FFFFFF; /* Change to desired hover text color */
+    }
+/* Footer styles */
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #31304D;
+    color: #B6BBC4;
+    text-align: center;
+    padding: 20px 0;
+    
+}

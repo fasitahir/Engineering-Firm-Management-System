@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "mRmqauCUvoQL92GvHa8cmFsPEJ7kFtvAkCDZZ+ud0Iw=",
+  "Hash": "ciX0YixpajkjNWgQNo15kcPtWghjUghePGNA1FGQi6E=",
   "Source": "FinalProject",
   "BasePath": "_content/FinalProject",
   "Mode": "Default",
@@ -1212,6 +1212,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Identity": "D:\\FasiTahir\\4th Semester\\DB\\FinalProjectDB\\FinalProject\\wwwroot\\logo.png",
+      "SourceId": "FinalProject",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\FasiTahir\\4th Semester\\DB\\FinalProjectDB\\FinalProject\\wwwroot\\",
+      "BasePath": "_content/FinalProject",
+      "RelativePath": "logo.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\logo.png"
     }
   ]
 }
