@@ -1,0 +1,77 @@
+﻿@page
+@model FinalProject.Pages.forms.HR.shortlistModel
+@{
+    Layout = "/Pages/Shared/_LayoutForHR.cshtml";
+}
+<div class="container">
+    <header class="row bg-light py-4">
+        <div class="col-12 text-center">
+            <!-- Dropdown for selecting applicant status -->
+            <div class="dropdown d-inline-block mx-2">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="applicantStatusDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    Applicant Status
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="applicantStatusDropdown">
+                    <li><a class="dropdown-item" href="#">Shortlisted Applicants</a></li>
+                    <li><a class="dropdown-item" href="#">Rejected Applicants</a></li>
+                    <li><a class="dropdown-item" href="#">New Applicants</a></li>
+                </ul>
+            </div>
+
+            <!-- Enter button -->
+            <button type="button" class="btn btn-primary" id="enterButton">Enter</button>
+        </div>
+    </header>
+    <div class="container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Applicant ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone Number</th>
+                    <th>CV</th>
+                    <th>Decision</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>John Doe</td>
+                    <td>johndoe@example.com</td>
+                    <td>03001234567</td>
+                    <td>
+                        <button type="button" class="btn btn-sm btn-primary" onclick="editRecord()">View CV</button>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-sm btn-success" onclick="shortlistApplicant(1)">Shortlist</button>
+                        <button type="button" class="btn btn-sm btn-danger" onclick="rejectApplicant(1)">Reject</button>
+                    </td>
+                </tr>
+                <!-- Add more rows here if needed -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // Function to handle shortlisting an applicant
+        function shortlistApplicant(applicantId) {
+            // Perform actions to shortlist the applicant, such as sending an AJAX request
+
+            // Example: Alerting the user
+            alert('Applicant ' + applicantId + ' shortlisted!');
+        }
+
+        // Function to handle rejecting an applicant
+        function rejectApplicant(applicantId) {
+            // Perform actions to reject the applicant, such as sending an AJAX request
+
+            // Example: Alerting the user
+            alert('Applicant ' + applicantId + ' rejected!');
+        }
+
+        // Function to handle editing the record (viewing the CV)
+        function editRecord() {
+            // Implement the logic to view the CV, such as opening a modal or redirecting to another page
+        }
+    </script>

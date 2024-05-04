@@ -77,6 +77,10 @@ namespace FinalProject.Pages
                 return RedirectToPage("/forms/Worker/WorkerHome");
 
             }
+            else if(designation == 5)
+            {
+                return RedirectToPage("/forms/HR/shortlist");
+            }
             else
             {
                 return RedirectToPage("/index");

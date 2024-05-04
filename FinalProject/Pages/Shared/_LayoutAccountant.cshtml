@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Db FinalProject</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/employeeSite.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~DB_Final_Project.styles.css" asp-append-version="true" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+</head>
+<body>
+@* 
+    <div class="container-fluid overflow-hidden">
+        <div class="row vh-100 overflow-auto">
+            <div class="col-12 col-sm-3 col-xl-2 px-sm-2 px-0 bg-dark d-flex sticky-top">
+                <div class="d-flex flex-sm-column flex-row flex-grow-1 align-items-center px-3 pt-2 text-white">
+                    <div class="d-flex flex-column align-items-center justify-content-center px-3 pt-2 text-white position-relative">
+                        <a href="/Dashboard" class="btn btn-outline-danger btn-block mb-4">Dashboard</a>
+                        <a href="/Transactions" class="btn btn-outline-danger btn-block mb-4">Transactions</a>
+                        <a href="/My Pages/Accountant" class="btn btn-outline-danger btn-block mb-4">Payments</a>
+                        <a href="/Employees" class="btn btn-outline-danger btn-block mb-4">Employees</a>
+                        <!-- New button for Reports -->
+                        <a href="/Reports" class="btn btn-outline-danger btn-block mb-4">Reports</a>
+                    </div>
+
+
+                    <div class="dropdown py-sm-4 mt-sm-auto ms-auto ms-sm-0 flex-shrink-1">
+                        <a href="#" class="d-flex align-items-center text-white text-decoration-none" id="dropdownUser1">
+                            <img src="https://github.com/mdo.png" alt="hugenerd" width="28" height="28" class="rounded-circle">
+                            <span class="d-none d-sm-inline mx-1">Sign Out</span>
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    <div class="container-fluid">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div> *@
+    <div class="container-fluid overflow-hidden">
+        <div class="row vh-100">
+            <div class="col-sm-3 px-0 bg-dark d-flex sticky-top align-items-center">
+                <div class="d-flex flex-column align-items-center justify-content-center px-3 pt-2 text-white position-relative">
+                    <a href="/Dashboard" class="btn btn-outline-danger btn-block mb-4">Dashboard</a>
+                    <a href="/Transactions" class="btn btn-outline-danger btn-block mb-4">Transactions</a>
+                    <a href="/Accountant/Payments" class="btn btn-outline-danger btn-block mb-4">Payments</a>
+                    <a href="/Accountant/Employees" class="btn btn-outline-danger btn-block mb-4">Employees</a>
+                    <a href="/Reports" class="btn btn-outline-danger btn-block mb-4">Reports</a>
+                </div>
+                <div class="dropdown py-sm-4 mt-sm-auto ms-auto ms-sm-0 flex-shrink-1">
+                    <a href="#" class="d-flex align-items-center text-white text-decoration-none" id="dropdownUser1">
+                        <img src="https://github.com/mdo.png" alt="hugenerd" width="28" height="28" class="rounded-circle">
+                        <span class="d-none d-sm-inline mx-1">Sign Out</span>
+                    </a>
+
+                </div>
+            </div>
+            <div class="col-sm-9">
+                <main role="main" class="pb-3">
+                    @RenderBody()
+                </main>
+            </div>
+        </div>
+    </div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

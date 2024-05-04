@@ -9,8 +9,15 @@ namespace FinalProject.Pages.forms
 {
     public class ApplyNowModel : PageModel
     {
+        private readonly IWebHostEnvironment environment;
+
         [BindProperty]
         public Person person { get; set; }
+
+        public ApplyNowModel(IWebHostEnvironment environment)
+        {
+            this.environment = environment;
+        }
 
         public void OnGet()
         {
@@ -44,7 +51,7 @@ namespace FinalProject.Pages.forms
                 SqlCommand cmd = new SqlCommand(@"INSERT INTO Person
                         VALUES (@Gender,@CNIC,@FirstName,@LastName, @Email, @PrimaryPhone, @AlternatePhone, @DateOfBirth, @Address)
                         INSERT INTO Applicant
-                        VALUES((SELECT MAX(PersonID) FROM Person),@DesiredDesignation,0, 0, null, null) ", con);
+                        VALUES((SELECT MAX(PersonID) FROM Person),@DesiredDesignation,0, 0, 0, @CVName, @PictureName) ", con);
                 cmd.Parameters.AddWithValue("@FirstName", firstName);
                 cmd.Parameters.AddWithValue("@LastName", lastName);
                 cmd.Parameters.AddWithValue("@DesiredDesignation", desiredDesignation);
@@ -63,36 +70,65 @@ namespace FinalProject.Pages.forms
                 }
                 cmd.Parameters.AddWithValue("@Email", email);
                 cmd.Parameters.AddWithValue("@CNIC", cnic);
+
+
+                string pictureName = DateTime.Now.ToString("yyyyMMddHHmmssfff");
+                pictureName += Path.GetExtension(person.Picture!.FileName);
+
+                string picturePath = environment.WebRootPath + "/Pictures/" + pictureName;
+                
                 
 
-                /*if (cv != null)
-                {
-                    cmd.Parameters.AddWithValue("@CV", cv);
 
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@CV", DBNull.Value);
-                }
+
+                string CVName = DateTime.Now.ToString("yyyyMMddHHmmssfff");
+                CVName += Path.GetExtension(person.CV!.FileName);
+
+                string CVPath = environment.WebRootPath + "/CVs/" + CVName;
+                
+
+                
+
+
+
 
 
 
                 if (picture != null)
                 {
-                    cmd.Parameters.AddWithValue("@Picture", picture);
+                    cmd.Parameters.AddWithValue("@PictureName", pictureName);
 
                 }
                 else
                 {
-                    cmd.Parameters.AddWithValue("@Picture", DBNull.Value);
+                    cmd.Parameters.AddWithValue("@PictureName", DBNull.Value);
                 }
 
 
-                */
+                if (cv != null)
+                {
+                    cmd.Parameters.AddWithValue("@CVName", CVName);
+
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@CVName", DBNull.Value);
+                }
 
                 cmd.ExecuteNonQuery();
 
-                
+                using (var stream = System.IO.File.Create(picturePath))
+                {
+                    person.Picture.CopyTo(stream);
+                }
+
+
+
+                using (var stream = System.IO.File.Create(CVPath))
+                {
+                    person.CV.CopyTo(stream);
+                }
+
             }
             catch (Exception e)
             {

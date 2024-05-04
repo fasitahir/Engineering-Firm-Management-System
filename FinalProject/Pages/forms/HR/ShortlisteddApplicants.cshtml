@@ -1,0 +1,57 @@
+﻿@page
+@model FinalProject.Pages.forms.HR.ShortlisteddApplicantsModel
+@{
+	ViewData["Title"] = "Shortlisted Applicants";
+	Layout = "/Pages/Shared/_LayoutForHR.cshtml";
+}
+
+
+<style>
+    .card {
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        transition: transform 0.3s;
+    }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+    .card-title {
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: #333;
+    }
+
+    .card-subtitle {
+        font-size: 1rem;
+        color: #666;
+    }
+
+    .btn-card {
+        margin-top: 10px;
+    }
+</style>
+
+<div class="container">
+    <h1>Shortlisted Applicants</h1>
+    <div class="row">
+        @foreach (var applicant in Model.ShortlistedApplicants)
+        {
+            <div class="col-md-4 mb-3">
+                <a href="@Url.Page("Details", new { id = applicant.ApplicantId })" class="card-link">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Applicant ID: @applicant.ApplicantId</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">Name: @applicant.Name</h6>
+                            <!-- Other applicant details can be displayed here -->
+                            <button type="button" class="btn btn-primary btn-card">Add as Employee</button>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        }
+    </div>
+</div>
+
