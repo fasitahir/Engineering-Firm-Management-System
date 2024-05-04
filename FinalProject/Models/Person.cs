@@ -17,5 +17,6 @@
         public IFormFile? CV { get; set; }
         public IFormFile? Picture { get; set; }
 
+
     }
 }

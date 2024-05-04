@@ -79,7 +79,7 @@ namespace FinalProject.Pages
             }
             else if(designation == 5)
             {
-                return RedirectToPage("/forms/HR/shortlist");
+                return RedirectToPage("/forms/HR/shortlist", new {EmployeeID});
             }
             else
             {

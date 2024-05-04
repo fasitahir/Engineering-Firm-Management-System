@@ -18,7 +18,7 @@
                 </ul>
             </div>
 
-            <!-- Enter button -->
+
             <button type="button" class="btn btn-primary" id="enterButton">Enter</button>
         </div>
     </header>
@@ -35,20 +35,23 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>John Doe</td>
-                    <td>johndoe@example.com</td>
-                    <td>03001234567</td>
-                    <td>
-                        <button type="button" class="btn btn-sm btn-primary" onclick="editRecord()">View CV</button>
-                    </td>
-                    <td>
-                        <button type="button" class="btn btn-sm btn-success" onclick="shortlistApplicant(1)">Shortlist</button>
-                        <button type="button" class="btn btn-sm btn-danger" onclick="rejectApplicant(1)">Reject</button>
-                    </td>
-                </tr>
-                <!-- Add more rows here if needed -->
+                    @foreach (var a in Model.applicants)
+                    {
+                        <tr>
+                            <td>@a.applicantID</td>
+                            <td>@a.person.FirstName</td>
+                            <td>@a.person.Email</td>
+                            <td>@a.person.PrimaryPhone</td>
+                            <td>
+                                <button type="button" class="btn btn-sm btn-primary" onclick="editRecord()">View CV</button>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-sm btn-success" onclick="shortlistApplicant(1)">Shortlist</button>
+                                <button type="button" class="btn btn-sm btn-danger" onclick="rejectApplicant(1)">Reject</button>
+                            </td>
+                        </tr>
+                    }
+
             </tbody>
         </table>
     </div>

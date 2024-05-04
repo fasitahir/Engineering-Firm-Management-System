@@ -4,17 +4,51 @@
     ViewData["Title"] = "Home";
 }
 
-<div class="container mt-4 d-flex justify-content-center">
+<div class="container mt-4 d-flex justify-content-end">
+    <form class="form-inline" method="post" action="">
+        <div class="form-group mr-2">
+            <input type="text" name="userName" class="form-control" placeholder="Username" asp-for="credential.userName">
+        </div>
+        <div class="form-group mr-2">
+            <input type="password" name="password" id="password" class="form-control" placeholder="Password" asp-for="credential.password">
+        </div>
 
-    <form class="form-inline ml-auto" method="post" action="">
-        <input type="text" name="userName" class="form-control mr-2" placeholder="Username" asp-for="credential.userName">
-
-        <input type="password" name="password" class="form-control mr-2" placeholder="Password" asp-for="credential.password">
+        <div class="form-check mr-2">
+            <input type="checkbox" id="showPassword" class="form-check-input">
+            <label class="form-check-label" for="showPassword">Show Password</label>
+        </div>
         <button type="submit" class="btn btn-primary">Login</button>
     </form>
-
 </div>
 
+<style>
+    /* Adjust spacing between form elements */
+    .form-group {
+        margin-bottom: 0;
+    }
+
+    /* Add some space between checkbox and label */
+    .form-check-label {
+        margin-left: 5px;
+    }
+</style>
+
+<script>
+    // Get the checkbox and password input field
+    const showPasswordCheckbox = document.getElementById('showPassword');
+    const passwordInput = document.getElementById('password');
+
+    // Add event listener to the checkbox
+    showPasswordCheckbox.addEventListener('change', function () {
+        // If the checkbox is checked, show the password
+        if (this.checked) {
+            passwordInput.type = 'text';
+        } else {
+            // Otherwise, hide the password
+            passwordInput.type = 'password';
+        }
+    });
+</script>
 
 <h1>Welcome to Ambala Engineering</h1>
 <h2>Revolutionizing Construction and Material Supply Industry</h2>
@@ -29,3 +63,7 @@
 <p>
     Ambala Engineering is committed to embracing digital transformation to enhance security, management, reporting, and efficiency. Our online recruitment system, enhanced data management, and streamlined operations ensure seamless processes for our clients and employees.
 </p>
+
+
+
+

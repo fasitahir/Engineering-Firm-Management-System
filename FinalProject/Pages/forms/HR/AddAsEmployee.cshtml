@@ -1,0 +1,193 @@
+﻿@page
+@model FinalProject.Pages.forms.HR.ApplicantDetailsModel
+@{
+    ViewData["Title"] = "Applicant Details";
+    Layout = "/Pages/Shared/_LayoutForHR.cshtml";
+}
+
+<style>
+    .container {
+        padding-top: 50px;
+        position: relative;
+    }
+
+    .card {
+        border-radius: 15px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-body {
+        padding: 20px;
+    }
+
+    .btn-back {
+        position: absolute;
+        bottom: 20px;
+        left: 20px;
+        background-color: red;
+        border-color: red;
+    }
+
+    .btn-proceed {
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+</style>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <h1 class="mb-4">Applicant Details</h1>
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h3 class="mb-3">Basic Information</h3>
+                    <p><strong>Applicant ID:</strong> @Model.ApplicantId</p>
+                    <p><strong>Full Name:</strong> @Model.FullName</p>
+                    <p><strong>CNIC:</strong> @Model.CNIC</p>
+                    <p><strong>Phone Number:</strong> @Model.PhoneNumber</p>
+                    <p><strong>Desired Designation:</strong> @Model.DesiredDesignation</p>
+                    <div class="text-center">
+                        <!-- Center the button -->
+                        <button type="button" class="btn btn-primary btn-proceed" onclick="showEmergencyContactModal()">Enter Emergency Contact Info</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h3 class="mb-3">Selection</h3>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="selection" id="selection" value="accepted">
+                        <label class="form-check-label" for="selection">Is Selected?</label>
+                    </div>
+                </div>
+            </div>
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h3 class="mb-3">Salary Details</h3>
+                    <div class="row mb-3">
+                        <div class="col">
+                            <label for="baseSalary" class="form-label">Base Salary:</label>
+                            <input type="text" class="form-control" id="baseSalary" name="baseSalary">
+                        </div>
+                        <div class="col">
+                            <label for="designation" class="form-label">Designation:</label>
+                            <select class="form-select" id="designation" name="designation">
+                                <option value="Option 1">Option 1</option>
+                                <option value="Option 2">Option 2</option>
+                                <!-- Add more options as needed -->
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Emergency Contact Modal -->
+            <!-- Emergency Contact Modal -->
+            <div class="modal fade" id="emergencyContactModal" tabindex="-1" aria-labelledby="emergencyContactModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="emergencyContactModalLabel">Emergency Contact Information</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="emergencyContactFirstName" class="form-label">First Name</label>
+                                            <input type="text" class="form-control" id="emergencyContactFirstName">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="emergencyContactLastName" class="form-label">Last Name</label>
+                                            <input type="text" class="form-control" id="emergencyContactLastName">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="emergencyContactCNIC" class="form-label">CNIC</label>
+                                    <input type="text" class="form-control" id="emergencyContactCNIC">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="emergencyContactEmail" class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="emergencyContactEmail">
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="emergencyContactPrimaryPhone" class="form-label">Primary Phone Number</label>
+                                            <input type="tel" class="form-control" id="emergencyContactPrimaryPhone">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="emergencyContactAlternatePhone" class="form-label">Alternate Phone Number</label>
+                                            <input type="tel" class="form-control" id="emergencyContactAlternatePhone">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="emergencyContactDOB" class="form-label">Date of Birth</label>
+                                    <input type="date" class="form-control" id="emergencyContactDOB">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="emergencyContactAddress" class="form-label">Address</label>
+                                    <textarea class="form-control" id="emergencyContactAddress" rows="3"></textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="emergencyContactRelationship" class="form-label">Relationship with Employee</label>
+                                    <select class="form-select" id="emergencyContactRelationship">
+                                        <option value="Spouse">Spouse</option>
+                                        <option value="Parent">Parent</option>
+                                        <option value="Sibling">Sibling</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" onclick="saveEmergencyContact()">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <!-- Center the button -->
+                <button type="button" class="btn btn-primary btn-proceed">Proceed</button>
+            </div>
+
+        </div>
+        <div class="col-md-4">
+            <h3 class="mb-4">Profile Photo</h3>
+            <img src="@Model.ProfilePhoto" alt="Profile Photo" class="img-fluid rounded">
+        </div>
+    </div>
+    <a asp-page="/HR/ShortlistedApplicants" class="btn btn-secondary btn-back">Back</a>
+</div>
+<!-- Your Razor page content -->
+
+<script>
+    function showEmergencyContactModal() {
+        const modal = new bootstrap.Modal(document.getElementById("emergencyContactModal"));
+        modal.show();
+    }
+
+    function saveEmergencyContact() {
+        // Add code to save emergency contact information here
+        const contactName = document.getElementById("emergencyContactName").value;
+        const contactNumber = document.getElementById("emergencyContactNumber").value;
+
+        // Example: Send data to server via AJAX or store locally
+        console.log("Emergency Contact Name:", contactName);
+        console.log("Emergency Contact Number:", contactNumber);
+
+        // Close the modal
+        const modal = new bootstrap.Modal(document.getElementById("emergencyContactModal"));
+        modal.hide();
+    }
+</script>

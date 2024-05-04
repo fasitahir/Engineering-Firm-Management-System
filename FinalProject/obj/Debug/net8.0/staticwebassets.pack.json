@@ -5,6 +5,14 @@
       "PackagePath": "staticwebassets\\FinalProject.bundle.scp.css"
     },
     {
+      "Id": "D:\\FasiTahir\\4th Semester\\DB\\FinalProjectDB\\FinalProject\\wwwroot\\CVs\\20240504111803185.pdf",
+      "PackagePath": "staticwebassets\\CVs\\20240504111803185.pdf"
+    },
+    {
+      "Id": "D:\\FasiTahir\\4th Semester\\DB\\FinalProjectDB\\FinalProject\\wwwroot\\Pictures\\20240504111801373.png",
+      "PackagePath": "staticwebassets\\Pictures\\20240504111801373.png"
+    },
+    {
       "Id": "D:\\FasiTahir\\4th Semester\\DB\\FinalProjectDB\\FinalProject\\wwwroot\\css\\employeeSite.css",
       "PackagePath": "staticwebassets\\css\\employeeSite.css"
     },
