@@ -3,7 +3,7 @@
     public class Person
     {
         public string FirstName { get; set; }
-        public string LastName { get; set; }
+        public string? LastName { get; set; }
         public string Email { get; set; }
         public string PrimaryPhone { get; set; }
         public string? AlternatePhone { get; set;}
@@ -14,9 +14,16 @@
 
         public int DesiredDesignation { get; set; }
 
-        public IFormFile? CV { get; set; }
-        public IFormFile? Picture { get; set; }
+        public string DesignationValue { get; set; }
 
+        public IFormFile CV { get; set; }
+
+        public string CVName { get; set; }
+
+
+        public IFormFile Picture { get; set; }
+
+        public string PictureName { get; set; }
 
     }
 }

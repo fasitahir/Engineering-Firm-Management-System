@@ -53,13 +53,25 @@ namespace FinalProject.Pages.forms
                         INSERT INTO Applicant
                         VALUES((SELECT MAX(PersonID) FROM Person),@DesiredDesignation,0, 0, 0, @CVName, @PictureName) ", con);
                 cmd.Parameters.AddWithValue("@FirstName", firstName);
-                cmd.Parameters.AddWithValue("@LastName", lastName);
                 cmd.Parameters.AddWithValue("@DesiredDesignation", desiredDesignation);
                 cmd.Parameters.AddWithValue("@Gender", gender);
                 cmd.Parameters.AddWithValue("@DateOfBirth", dateOfBirth);
                 cmd.Parameters.AddWithValue("@Address", address);
                 cmd.Parameters.AddWithValue("@PrimaryPhone", phoneNumber);
-                if(!string.IsNullOrEmpty(alternateNumber))
+
+                if (!string.IsNullOrEmpty(lastName))
+                {
+                    cmd.Parameters.AddWithValue("@LastName", lastName);
+
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@LastName", DBNull.Value);
+                }
+
+
+
+                if (!string.IsNullOrEmpty(alternateNumber))
                 {
                     cmd.Parameters.AddWithValue("@AlternatePhone", alternateNumber);
 

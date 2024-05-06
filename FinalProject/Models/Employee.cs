@@ -2,8 +2,10 @@
 {
 	public class Employee
 	{
-        public Applicant? Applicant { get; set; }
-        public string? EmployeeId { get; set; }
+        public Applicant applicant = new Applicant();
+        public int EmployeeId { get; set; }
+        public int Designation {  get; set; }
+        public string DesignationName { get; set; }
         public double Salary { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime PaidDate { get; set; }

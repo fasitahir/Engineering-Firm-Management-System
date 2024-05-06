@@ -37,15 +37,14 @@
 <div class="container">
     <h1>Shortlisted Applicants</h1>
     <div class="row">
-        @foreach (var applicant in Model.ShortlistedApplicants)
+        @foreach (var a in Model.applicants)
         {
             <div class="col-md-4 mb-3">
-                <a href="@Url.Page("Details", new { id = applicant.ApplicantId })" class="card-link">
+                <a href="\forms\HR\AddAsEmployee?id=@a.applicantID" class="card-link">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Applicant ID: @applicant.ApplicantId</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">Name: @applicant.Name</h6>
-                            <button type="button" class="btn btn-primary btn-card">Add as Employee</button>
+                            <h5 class="card-title">Applicant ID: @a.applicantID</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">Name: @a.person.FirstName @a.person.LastName</h6>
                         </div>
                     </div>
                 </a>

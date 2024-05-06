@@ -41,130 +41,191 @@
             <div class="card mb-4">
                 <div class="card-body">
                     <h3 class="mb-3">Basic Information</h3>
-                    <p><strong>Applicant ID:</strong> @Model.ApplicantId</p>
-                    <p><strong>Full Name:</strong> @Model.FullName</p>
-                    <p><strong>CNIC:</strong> @Model.CNIC</p>
-                    <p><strong>Phone Number:</strong> @Model.PhoneNumber</p>
-                    <p><strong>Desired Designation:</strong> @Model.DesiredDesignation</p>
+                    <p><strong>Applicant ID:</strong> @Model.applicant.applicantID</p>
+                    <p><strong>Full Name:</strong> @Model.applicant.person.FirstName @Model.applicant.person.LastName </p>
+                    <p><strong>CNIC:</strong> @Model.applicant.person.CNIC</p>
+                    <p><strong>Phone Number:</strong> @Model.applicant.person.PrimaryPhone</p>
+                    <p><strong>Desired Designation:</strong> @Model.applicant.person.DesignationValue</p>
                     <div class="text-center">
                         <!-- Center the button -->
                         <button type="button" class="btn btn-primary btn-proceed" onclick="showEmergencyContactModal()">Enter Emergency Contact Info</button>
                     </div>
                 </div>
             </div>
-            <div class="card mb-4">
-                <div class="card-body">
-                    <h3 class="mb-3">Selection</h3>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="selection" id="selection" value="accepted">
-                        <label class="form-check-label" for="selection">Is Selected?</label>
+            <form method="post">
+
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h3 class="mb-3">Selection</h3>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" asp-for="employee.applicant.isSelected" id="selection">
+                            <label class="form-check-label" for="selection">Is Selected</label>
+                        </div>
+
+
+
                     </div>
                 </div>
-            </div>
-            <div class="card mb-4">
-                <div class="card-body">
-                    <h3 class="mb-3">Salary Details</h3>
-                    <div class="row mb-3">
-                        <div class="col">
-                            <label for="baseSalary" class="form-label">Base Salary:</label>
-                            <input type="text" class="form-control" id="baseSalary" name="baseSalary">
-                        </div>
-                        <div class="col">
-                            <label for="designation" class="form-label">Designation:</label>
-                            <select class="form-select" id="designation" name="designation">
-                                <option value="Option 1">Option 1</option>
-                                <option value="Option 2">Option 2</option>
-                                <!-- Add more options as needed -->
-                            </select>
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h3 class="mb-3">Salary Details</h3>
+                        <div class="row mb-3">
+                            <div class="col">
+                                <label for="baseSalary" class="form-label">Base Salary:</label>
+                                <input type="text" class="form-control" asp-for="employee.Salary" id="baseSalary" name="baseSalary">
+                            </div>
+                            <div class="col">
+                                <label for="designation" class="form-label">Designation:</label>
+                                @Html.DropDownListFor(model => model.employee.Designation,  new List<SelectListItem>
+                                {
+                                new SelectListItem { Text = "Worker", Value = "3" },
+                                new SelectListItem { Text = "Accountant", Value = "4" },
+                                new SelectListItem { Text = "HR", Value = "5" },
+                                new SelectListItem { Text = "Inventory Manager", Value = "6" }
+
+
+                                }, "Select Designation", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.employee.Designation, "", new { @class = "text-danger" })
+
+                            </div>
                         </div>
                     </div>
+
                 </div>
-            </div>
+                <div class="text-center">
+                    <!-- Center the button -->
+                    <button type="submit" class="btn btn-primary btn-proceed" onclick="showEmergencyContactModal()">Proceed</button>
+                    
+                </div>
+                
+            </form>
+
 
             <!-- Emergency Contact Modal -->
-            <!-- Emergency Contact Modal -->
             <div class="modal fade" id="emergencyContactModal" tabindex="-1" aria-labelledby="emergencyContactModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="emergencyContactModalLabel">Emergency Contact Information</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <form>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="emergencyContactModalLabel">Emergency Contact Information</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form method="post">
+                <div class="modal-body">
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label for="emergencyContactFirstName" class="form-label">First Name</label>
-                                            <input type="text" class="form-control" id="emergencyContactFirstName">
+                                            <input type="text" maxlength="50" class="form-control" asp-for="emergencyContact.person.FirstName" id="emergencyContactFirstName"/>
+                                        @if (!ModelState.IsValid )
+                                            {
+                                                <p style="color: red;">FirstName is required</p>
+                                            }
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="mb-3">
-                                            <label for="emergencyContactLastName" class="form-label">Last Name</label>
-                                            <input type="text" class="form-control" id="emergencyContactLastName">
+                                            <label for="emergencyContactLastName" maxlength="50" class="form-label">Last Name</label>
+                                            <input type="text" class="form-control" asp-for="emergencyContact.person.LastName" id="emergencyContactLastName" />
                                         </div>
                                     </div>
                                 </div>
                                 <div class="mb-3">
                                     <label for="emergencyContactCNIC" class="form-label">CNIC</label>
-                                    <input type="text" class="form-control" id="emergencyContactCNIC">
+                                    <input type="text" class="form-control" maxlength="13" asp-for="emergencyContact.person.CNIC" id="emergencyContactCNIC">
+                                    @if (!ModelState.IsValid)
+                                    {
+                                        <p style="color: red;">CNIC is required</p>
+                                    }
                                 </div>
                                 <div class="mb-3">
-                                    <label for="emergencyContactEmail" class="form-label">Email</label>
-                                    <input type="email" class="form-control" id="emergencyContactEmail">
+                                    <label for="emergencyContactEmail"  class="form-label">Email</label>
+                                    <input type="email" class="form-control" maxlength="255" asp-for="emergencyContact.person.Email" id="emergencyContactEmail">
+                                    @if (!ModelState.IsValid)
+                                    {
+                                        <p style="color: red;">Email is required</p>
+                                    }
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label for="emergencyContactPrimaryPhone" class="form-label">Primary Phone Number</label>
-                                            <input type="tel" class="form-control" id="emergencyContactPrimaryPhone">
+                                            <input type="tel" class="form-control" maxlength="11" asp-for="emergencyContact.person.PrimaryPhone" id="emergencyContactPrimaryPhone">
+                                            @if (!ModelState.IsValid)
+                                            {
+                                                <p style="color: red;">Primary Phone is required</p>
+                                            }
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label for="emergencyContactAlternatePhone" class="form-label">Alternate Phone Number</label>
-                                            <input type="tel" class="form-control" id="emergencyContactAlternatePhone">
+                                            <input type="tel" class="form-control" maxlength="11" asp-for="emergencyContact.person.AlternatePhone" id="emergencyContactAlternatePhone">
                                         </div>
                                     </div>
                                 </div>
+                                    
+
                                 <div class="mb-3">
-                                    <label for="emergencyContactDOB" class="form-label">Date of Birth</label>
-                                    <input type="date" class="form-control" id="emergencyContactDOB">
+                                    <label for="emergencyContactGender" class="form-label">Gener of Emergency Contact</label>
+                                    @Html.DropDownListFor(model => model.emergencyContact.person.Gender, new List<SelectListItem>
+                                    {
+                                    new SelectListItem { Text = "Male", Value = "1" },
+                                    new SelectListItem { Text = "Female", Value = "2" }
+                                    }, "Select Gender", new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.emergencyContact.person.Gender, "", new { @class = "text-danger" })
                                 </div>
+
+                                
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="DateOfBirth" class="form-label">Date of Birth:</label>
+                                        <input id="DateOfBirth" type="date" class="form-control" asp-for="emergencyContact.person.DateOfBirth" />
+                                        @if (!ModelState.IsValid)
+                                        {
+                                            <p style="color: red;">Please select valid DOB</p>
+                                        }
+                                    </div>
+                                </div>
+
                                 <div class="mb-3">
                                     <label for="emergencyContactAddress" class="form-label">Address</label>
-                                    <textarea class="form-control" id="emergencyContactAddress" rows="3"></textarea>
+                                    <textarea class="form-control" asp-for="emergencyContact.person.Address" id="emergencyContactAddress" maxlength="255" rows="4"></textarea>
+                                    @if (!ModelState.IsValid)
+                                    {
+                                        <p style="color: red;">Adress is required</p>
+                                    }
                                 </div>
                                 <div class="mb-3">
                                     <label for="emergencyContactRelationship" class="form-label">Relationship with Employee</label>
-                                    <select class="form-select" id="emergencyContactRelationship">
-                                        <option value="Spouse">Spouse</option>
-                                        <option value="Parent">Parent</option>
-                                        <option value="Sibling">Sibling</option>
-                                        <option value="Other">Other</option>
-                                    </select>
-                                </div>
-                            </form>
-                        </div>
+                                    @Html.DropDownListFor(model => model.emergencyContact.relation, new List<SelectListItem>
+                                    {
+                                    new SelectListItem { Text = "Sibling", Value = "7" },
+                                    new SelectListItem { Text = "Spouse", Value = "8" },
+                                    new SelectListItem { Text = "Child", Value = "9" },
+                                    new SelectListItem { Text = "Parent", Value = "10" },
+                                    new SelectListItem { Text = "Other", Value = "11" }
 
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary" onclick="saveEmergencyContact()">Save</button>
-                        </div>
+
+                                    }, "Select Relationship", new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.emergencyContact.relation, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Save</button>
+                                </div>
+                              </form>
+
+                        
                     </div>
                 </div>
             </div>
 
-            <div class="text-center">
-                <!-- Center the button -->
-                <button type="button" class="btn btn-primary btn-proceed">Proceed</button>
-            </div>
-
+            
         </div>
         <div class="col-md-4">
             <h3 class="mb-4">Profile Photo</h3>
-            <img src="@Model.ProfilePhoto" alt="Profile Photo" class="img-fluid rounded">
+            <img src="/Pictures/@Model.applicant.person.PictureName" alt="Profile Photo" class="img-fluid rounded">
         </div>
     </div>
     <a asp-page="/HR/ShortlistedApplicants" class="btn btn-secondary btn-back">Back</a>
@@ -177,12 +238,23 @@
         modal.show();
     }
 
+    // Ensure the DOM is ready
+    document.addEventListener("DOMContentLoaded", function () {
+        // Handle form submission for the emergency contact modal
+        document.getElementById("emergencyContactForm").addEventListener("submit", function (event) {
+            event.preventDefault(); // Prevent the form from submitting
+            saveEmergencyContact(); // Call your function to handle saving the data
+        });
+    });
+
     function saveEmergencyContact() {
         // Add code to save emergency contact information here
-        const contactName = document.getElementById("emergencyContactName").value;
-        const contactNumber = document.getElementById("emergencyContactNumber").value;
-
+        // This function will be called when the modal form is submitted
         // Example: Send data to server via AJAX or store locally
+        const contactName = document.getElementById("emergencyContactFirstName").value;
+        const contactNumber = document.getElementById("emergencyContactPrimaryPhone").value;
+
+        // Log the data for demonstration
         console.log("Emergency Contact Name:", contactName);
         console.log("Emergency Contact Number:", contactNumber);
 
