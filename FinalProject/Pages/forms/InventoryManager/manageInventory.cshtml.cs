@@ -1,29 +1,40 @@
+using FinalProject.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Data.SqlClient;
 
 namespace FinalProject.Pages.forms.InventoryManager
 {
     public class manageInventoryModel : PageModel
     {
-		public class InventoryItem
-		{
-			public string Name { get; set; }
-			public string Description { get; set; }
-			public double SalePrice { get; set; }
-			public string MeasurementUnit { get; set; }
-		}
-
-		// Temporary data for demonstration
-		public List<InventoryItem> InventoryItems { get; set; } = new List<InventoryItem>
-		{
-			new InventoryItem { Name = "Item 1", Description = "Description 1", SalePrice = 10.99, MeasurementUnit = "Unit 1" },
-			new InventoryItem { Name = "Item 2", Description = "Description 2", SalePrice = 20.99, MeasurementUnit = "Unit 2" },
-			new InventoryItem { Name = "Item 3", Description = "Description 3", SalePrice = 30.99, MeasurementUnit = "Unit 3" }
-		};
-
+		[BindProperty]
+		public List<Item> items { get; set; } = new List<Item> ();
+		private static SqlConnection con = Configuration.getInstance().getConnection();
+        
 		public void OnGet()
 		{
-			// Here you can perform any initialization logic
+			SqlCommand cmd = new SqlCommand(@"SELECT ItemName, Description, SalePrice, MeasurementUnit FROM Item", con);
+			using (SqlDataReader reader =cmd.ExecuteReader())
+			{
+				while(reader.Read())
+				{
+					Item item = new Item ();
+					item.ItemName = reader.GetString(0);
+                    if (!reader.IsDBNull(1)) // Check if the value is not NULL
+                    {
+                        item.Description = reader.GetString(1); 
+                    }
+                    else
+                    {
+                        item.Description = string.Empty; 
+                    }
+
+                    item.SalePrice = Convert.ToDouble(reader.GetDecimal(2));
+                    item.MeasurementUnit = reader.GetString(3);
+
+					items.Add(item);
+                }
+            }
 		}
 	}
 }

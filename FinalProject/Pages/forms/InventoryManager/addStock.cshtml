@@ -12,85 +12,114 @@
 
 <div class="container">
     <h1 class="mb-4">Add Stock</h1>
-    <form method="post">
+    <form method="post" asp-page-handler="AddItem">
         <div class="mb-3">
             <div id="errorMessageContainer"></div>
             <label for="arrivalDate" class="form-label"><strong>Stock Arrival Date</strong></label>
-            <input type="date" class="form-control" id="arrivalDate" name="ArrivalDate">
+            <input type="date" class="form-control" id="arrivalDate" asp-for="item.ArrivalDate">
         </div>
         <hr>
         <div class="row mb-3">
             <div class="col">
                 <label for="itemName" class="form-label">Item Name</label>
-                <input type="text" class="form-control" id="itemName" name="ItemName">
+                <input type="text" class="form-control" id="itemName" asp-for="item.ItemName">
             </div>
             <div class="col-md-6">
                 <label for="salesPrice" class="form-label">Sales Price</label>
-                <input type="number" class="form-control" id="salesPrice" name="SalesPrice">
+                <input type="number" class="form-control" id="salesPrice" asp-for="item.SalePrice">
             </div>
         </div>
         <div class="row mb-3">
             <div class="col">
                 <label for="description" class="form-label">Description</label>
-                <textarea class="form-control" id="description" name="Description"></textarea>
+                <textarea class="form-control" id="description" asp-for="item.Description"></textarea>
             </div>
-           
+
             <div class="col-md-6">
                 <label for="measurementUnit" class="form-label">Measurement Unit</label>
-                <input type="text" class="form-control" id="measurementUnit" name="MeasurementUnit">
+                <input type="text" class="form-control" id="measurementUnit" asp-for="item.MeasurementUnit">
             </div>
         </div>
         <div class="row mb-3">
             <div class="col-md-6">
                 <label for="costPrice" class="form-label">Cost Price</label>
-                <input type="number" class="form-control" id="costPrice" name="CostPrice">
+                <input type="number" class="form-control" id="costPrice" asp-for="item.CostPrice">
             </div>
             <div class="col-md-6">
                 <label for="quantity" class="form-label">Quantity</label>
-                <input type="number" class="form-control" id="quantity" name="Quantity">
+                <input type="number" class="form-control" id="quantity" asp-for="item.CurrentQuantity">
             </div>
         </div>
         <div class="row">
             <div class="col">
                 <button type="button" class="btn btn-secondary mt-3" onclick="resetForm()">Cancel</button>
-                <button type="button" class="btn btn-primary mt-3" onclick="saveItem()">Save</button>
+                <button type="submit" class="btn btn-primary mt-3">Save</button>
+                @if (ModelState.IsValid)
+                {
+                    <script>
+                        // Call the resetForm() function if the ModelState is not valid
+                        resetForm();
+                    </script>
+                }
             </div>
         </div>
     </form>
 
+
     <hr>
 
-    <!-- Table to display added items -->
-    <h2 class="mb-3">Added Items</h2>
-    <div class="table-responsive">
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>Item Name</th>
-                    <th>Description</th>
-                    <th>Sales Price</th>
-                    <th>Measurement Unit</th>
-                    <th>Cost Price</th>
-                    <th>Quantity</th>
-                    <th>Action</th> <!-- Added Action column -->
-                </tr>
-            </thead>
-            <tbody id="addedItemsTableBody">
-                <!-- Table rows for added items will be dynamically populated here -->
-                <tr>
-                </tr>
-                <!-- Add more rows as needed -->
-            </tbody>
-        </table>
-    </div>
+    <form method="post" asp-page-handler="AddStock" id="addStockForm">
+        <!-- Table to display added items -->
+        <h2 class="mb-3">Added Items</h2>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Item Name</th>
+                        <th>Description</th>
+                        <th>Sales Price</th>
+                        <th>Measurement Unit</th>
+                        <th>Cost Price</th>
+                        <th>Quantity</th>
+                        <th>Action</th>
+                    
+                        </tr>
+                </thead>
+                <tbody id="addedItemsTableBody">
+                        @foreach (var item in addStockModel.items)
+                        {
+                            <tr>
+                                <td>@item.ItemName</td>
+                                <td>@item.Description</td>
+                                <td>@item.SalePrice</td>
+                                <td>@item.MeasurementUnit</td>
+                                <td>@item.CostPrice</td>
+                                <td>@item.CurrentQuantity</td>
+                            <td>
+                                <button type="submit" formmethod="post" asp-page-handler="ItemRemove" asp-route-Name="@item.ItemName" class="btn btn-danger btn-sm">Delete</button>
 
-    <!-- Button to add stock -->
-    <div class="text-center">
-        <button type="button" class="btn btn-success mt-3" onclick="addStock()">Add Stock</button>
-    </div>
+                            </td>
+                            </tr>
+                        }
+
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Button to add stock -->
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary mt-3">Add Stock</button>
+        </div>
+    </form>
+
 </div>
 
+
+
+
+
 <script>
+
     function resetForm() 
     {
         // Reset all form fields
@@ -112,8 +141,7 @@
         var costPrice = document.getElementById("costPrice").value;
         var quantity = document.getElementById("quantity").value;
 
-        if (!itemName.trim() && !salesPrice.trim() && !measurementUnit.trim() && !costPrice.trim() && !quantity.trim())
-        {
+        if (!itemName.trim() || !description.trim() || !salesPrice.trim() || !measurementUnit.trim() || !costPrice.trim() || !quantity.trim()) {
             // Display Bootstrap alert
             var errorMessage = document.createElement("div");
             errorMessage.className = "alert alert-danger";
@@ -121,6 +149,7 @@
             document.getElementById("errorMessageContainer").appendChild(errorMessage);
             return;
         }
+
         // Create new table row
         var newRow = document.createElement("tr");
         newRow.innerHTML = "<td>" + itemName + "</td><td>" + description + "</td><td>" + salesPrice + "</td><td>" + measurementUnit + "</td><td>" + costPrice + "</td><td>" + quantity + "</td>";
@@ -132,12 +161,5 @@
         resetForm();
     }
 
-
-
-    function addStock() {
-        // Add logic to send form data to server and add the item to the stock
-        // You can use AJAX to send the form data to the server
-        // After adding the item, you can dynamically populate the table with the added item
-    }
 </script>
 

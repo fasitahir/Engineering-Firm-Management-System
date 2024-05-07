@@ -32,10 +32,10 @@
         </thead>
         <tbody>
             <!-- Populate table with temporary inventory items -->
-            @foreach (var item in Model.InventoryItems)
+            @foreach (var item in Model.items)
             {
                 <tr>
-                    <td>@item.Name</td>
+                    <td>@item.ItemName</td>
                     <td>@item.Description</td>
                     <td>@item.SalePrice</td>
                     <td>@item.MeasurementUnit</td>
@@ -48,6 +48,7 @@
     </table>
 </div>
 
+<!-- Modal for editing inventory item -->
 <!-- Modal for editing inventory item -->
 <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -86,14 +87,3 @@
         </div>
     </div>
 </div>
-
-<!-- Add Stock Modal -->
-<div class="modal fade" id="addStockModal" tabindex="-1" aria-labelledby="addStockModalLabel" aria-hidden="true">
-    <!-- Add Stock Modal content goes here -->
-</div>
-
-<!-- Edit Stock Modal -->
-<div class="modal fade" id="editStockModal" tabindex="-1" aria-labelledby="editStockModalLabel" aria-hidden="true">
-    <!-- Edit Stock Modal content goes here -->
-</div>
-
