@@ -1,0 +1,135 @@
+﻿@page
+@model FinalProject.Pages.forms.InventoryManager.EditStockModel
+@{
+    Layout = "/Pages/Shared/_LayoutForInventoryManager.cshtml";
+}
+<div class="container">
+    <h1 class="mb-4">Add Stock</h1>
+    <form method="post">
+        <div class="mb-3">
+            <label for="stockId" class="form-label"><strong>Select Stock ID</strong></label>
+            <select class="form-select" id="stockId" name="StockId">
+                <option value="1">Stock ID 1</option>
+                <option value="2">Stock ID 2</option>
+                <!-- Add more options as needed -->
+            </select>
+        </div>
+        <hr>
+        <div class="row mb-3">
+            <div class="col">
+                <label for="itemName" class="form-label">Item Name</label>
+                <input type="text" class="form-control" id="itemName" name="ItemName">
+            </div>
+            <div class="col-md-6">
+                <label for="salesPrice" class="form-label">Sales Price</label>
+                <input type="number" class="form-control" id="salesPrice" name="SalesPrice">
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col">
+                <label for="description" class="form-label">Description</label>
+                <textarea class="form-control" id="description" name="Description"></textarea>
+            </div>
+            <div class="col-md-6">
+                <label for="measurementUnit" class="form-label">Measurement Unit</label>
+                <input type="text" class="form-control" id="measurementUnit" name="MeasurementUnit">
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label for="costPrice" class="form-label">Cost Price</label>
+                <input type="number" class="form-control" id="costPrice" name="CostPrice">
+            </div>
+            <div class="col-md-6">
+                <label for="quantity" class="form-label">Quantity</label>
+                <input type="number" class="form-control" id="quantity" name="Quantity">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <button type="button" class="btn btn-secondary mt-3" onclick="resetForm()">Cancel</button>
+                <button type="button" class="btn btn-primary mt-3" onclick="saveItem()">Save</button>
+            </div>
+        </div>
+    </form>
+
+    <hr>
+
+    <!-- Table to display added items -->
+    <h2 class="mb-3">Added Items</h2>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Item Name</th>
+                    <th>Description</th>
+                    <th>Sales Price</th>
+                    <th>Measurement Unit</th>
+                    <th>Cost Price</th>
+                    <th>Quantity</th>
+                    <th>Action</th> <!-- Added Action column -->
+                </tr>
+            </thead>
+            <tbody id="addedItemsTableBody">
+                <!-- Table rows for added items will be dynamically populated here -->
+                <tr>
+                    <td>Item 1</td>
+                    <td>Description 1</td>
+                    <td>10.99</td>
+                    <td>Unit 1</td>
+                    <td>5.99</td>
+                    <td>10</td>
+                    <td>
+                        <button class="btn btn-danger btn-sm" onclick="deleteItem(this)">Delete</button>
+                    </td>
+                </tr>
+                <!-- Add more rows as needed -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Button to add stock -->
+    <div class="text-center">
+        <button type="button" class="btn btn-success mt-3" onclick="addStock()">Add Stock</button>
+    </div>
+</div>
+
+<script>
+    function resetForm() {
+        // Reset all form fields
+        document.getElementById("stockId").selectedIndex = 0;
+        document.getElementById("itemName").value = "";
+        document.getElementById("description").value = "";
+        document.getElementById("salesPrice").value = "";
+        document.getElementById("measurementUnit").value = "";
+        document.getElementById("costPrice").value = "";
+        document.getElementById("quantity").value = "";
+    }
+
+    function saveItem() {
+        // Get form values
+        var stockId = document.getElementById("stockId").value;
+        var itemName = document.getElementById("itemName").value;
+        var description = document.getElementById("description").value;
+        var salesPrice = document.getElementById("salesPrice").value;
+        var measurementUnit = document.getElementById("measurementUnit").value;
+        var costPrice = document.getElementById("costPrice").value;
+        var quantity = document.getElementById("quantity").value;
+
+        // Create new table row
+        var newRow = document.createElement("tr");
+        newRow.innerHTML = "<td>" + itemName + "</td><td>" + description + "</td><td>" + salesPrice + "</td><td>" + measurementUnit + "</td><td>" + costPrice + "</td><td>" + quantity + "</td>";
+
+        // Append the new row to the table body
+        document.getElementById("addedItemsTableBody").appendChild(newRow);
+
+        // Reset the form
+        resetForm();
+    }
+
+    function addStock() {
+        // Add logic to send form data to server and add the item to the stock
+        // You can use AJAX to send the form data to the server
+        // After adding the item, you can dynamically populate the table with the added item
+    }
+</script>

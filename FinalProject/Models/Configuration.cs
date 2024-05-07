@@ -10,7 +10,7 @@ namespace FinalProject.Models
 
 	class Configuration
 	{
-		String ConnectionStr = @"Data Source=(local);Initial Catalog=FinalProjectDB;Integrated Security=True";
+		string ConnectionStr = @"Data Source=(local);Initial Catalog=FinalProjectDB;Integrated Security=True";
 		SqlConnection con;
 		private static Configuration _instance;
 		public static Configuration getInstance()
@@ -28,6 +28,7 @@ namespace FinalProject.Models
 		{
 			return con;
 		}
+
 	}
 
 }

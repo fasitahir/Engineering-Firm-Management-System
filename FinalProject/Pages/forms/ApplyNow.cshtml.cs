@@ -1,14 +1,17 @@
 using FinalProject.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.FileProviders;
 using System.Data.SqlClient;
 
 namespace FinalProject.Pages.forms
 {
     public class ApplyNowModel : PageModel
+
+
     {
+
+
+        public static SqlConnection con = Configuration.getInstance().getConnection();
         private readonly IWebHostEnvironment environment;
 
         [BindProperty]
@@ -25,20 +28,33 @@ namespace FinalProject.Pages.forms
 
         public IActionResult OnPost()
         {
-            if (!ModelState.IsValid)
+
+            if (string.IsNullOrWhiteSpace(person.FirstName) ||
+                string.IsNullOrWhiteSpace(person.Email) ||
+                string.IsNullOrWhiteSpace(person.PrimaryPhone) ||
+                string.IsNullOrWhiteSpace(person.CNIC) ||
+                string.IsNullOrWhiteSpace(person.Address) ||
+                person.DateOfBirth == default(DateTime) ||
+                person.Gender == 0 ||
+                person.DesiredDesignation == 0 ||
+                person.CV == null ||
+                person.Picture == null)
             {
-                
+                // Handle the case where any required field is empty or null
+                // For example, you can set an error message and return to the page
+                TempData["ErrorMessage"] = "Please fill out all required fields.";
                 return Page();
             }
 
+
             int gender = person.Gender;
             string firstName = person.FirstName;
-            string lastName = person.LastName;
+            string? lastName = person.LastName;
             int desiredDesignation = person.DesiredDesignation;
             DateTime dateOfBirth = person.DateOfBirth;
             string address = person.Address;
             string phoneNumber = person.PrimaryPhone;
-            string alternateNumber = person.AlternatePhone;
+            string? alternateNumber = person.AlternatePhone;
             string email = person.Email;
             string cnic = person.CNIC;
             IFormFile cv = person.CV;
@@ -47,7 +63,7 @@ namespace FinalProject.Pages.forms
 
             try
             {
-                var con = Configuration.getInstance().getConnection();
+
                 SqlCommand cmd = new SqlCommand(@"INSERT INTO Person
                         VALUES (@Gender,@CNIC,@FirstName,@LastName, @Email, @PrimaryPhone, @AlternatePhone, @DateOfBirth, @Address)
                         INSERT INTO Applicant
@@ -88,8 +104,8 @@ namespace FinalProject.Pages.forms
                 pictureName += Path.GetExtension(person.Picture!.FileName);
 
                 string picturePath = environment.WebRootPath + "/Pictures/" + pictureName;
-                
-                
+
+
 
 
 
@@ -97,13 +113,6 @@ namespace FinalProject.Pages.forms
                 CVName += Path.GetExtension(person.CV!.FileName);
 
                 string CVPath = environment.WebRootPath + "/CVs/" + CVName;
-                
-
-                
-
-
-
-
 
 
                 if (picture != null)
@@ -145,10 +154,10 @@ namespace FinalProject.Pages.forms
             catch (Exception e)
             {
                 TempData["ErrorMessage"] = e.Message;
-                throw e;
+                Console.WriteLine(e.Message);
             }
 
-            
+
             return RedirectToPage("/Index");
         }
     }

@@ -37,3 +37,5 @@ D:\FasiTahir\4th Semester\DB\FinalProjectDB\FinalProject\bin\Debug\net8.0\runtim
 D:\FasiTahir\4th Semester\DB\FinalProjectDB\FinalProject\obj\Debug\net8.0\FinalProject.csproj.AssemblyReference.cache
 D:\FasiTahir\4th Semester\DB\FinalProjectDB\FinalProject\obj\Debug\net8.0\FinalProject.csproj.CopyComplete
 D:\FasiTahir\4th Semester\DB\FinalProjectDB\FinalProject\obj\Debug\net8.0\FinalProject.sourcelink.json
+D:\FasiTahir\4th Semester\DB\FinalProjectDB\FinalProject\bin\Debug\net8.0\System.Configuration.ConfigurationManager.dll
+D:\FasiTahir\4th Semester\DB\FinalProjectDB\FinalProject\bin\Debug\net8.0\System.Security.Cryptography.ProtectedData.dll

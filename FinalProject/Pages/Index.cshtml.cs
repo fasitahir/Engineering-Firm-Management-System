@@ -13,6 +13,8 @@ namespace FinalProject.Pages
         public Credentials credential { get; set; }
         private readonly ILogger<IndexModel> _logger;
 
+        public static SqlConnection con = Configuration.getInstance().getConnection();
+
         public IndexModel(ILogger<IndexModel> logger)
         {
             _logger = logger;
@@ -20,7 +22,7 @@ namespace FinalProject.Pages
 
         public void OnGet()
         {
-            
+
         }
 
         public IActionResult OnPost()
@@ -39,53 +41,55 @@ namespace FinalProject.Pages
 
             try
             {
-                var con = Configuration.getInstance().getConnection();
                 SqlCommand cmd = new SqlCommand(@"SELECT DesignationID, C.EmployeeID
                     FROM Employee E
                     JOIN Credentials C ON C.EmployeeID = E.EmployeeID
-                    WHERE C.Username = @UserName AND C.Password = @Password", con);
+                    WHERE C.Username = @UserName AND C.Password = @Password AND E.IsActive = 1", con);
 
                 cmd.Parameters.AddWithValue("@UserName", userName);
                 cmd.Parameters.AddWithValue("@Password", password);
 
-                SqlDataReader reader = cmd.ExecuteReader();
-                if (reader.Read())
+                using (SqlDataReader reader = cmd.ExecuteReader())
                 {
-                    
-                    designation = int.Parse(reader["DesignationID"].ToString());
-                    EmployeeID = int.Parse(reader["EmployeeID"].ToString());
+                    if (reader.Read())
+                    {
+
+                        designation = int.Parse(reader["DesignationID"].ToString());
+                        EmployeeID = int.Parse(reader["EmployeeID"].ToString());
+
+                    }
+                    else
+                    {
+                        TempData["ErrorMessage"] = "Invalid username or password.";
+                        return Page();
+                    }
 
                 }
-                else
-                {
-                    TempData["ErrorMessage"] = "Invalid username or password.";
-                    return Page();
-                }
 
-                reader.Close();
             }
             catch (Exception e)
             {
                 TempData["ErrorMessage"] = e.Message;
-                
+                Console.WriteLine("Index: " + e.Message);
+
             }
 
             // Redirect to the desired page upon successful authentication
-            
-            if(designation == 3)
+
+            if (designation == 3)
             {
                 return RedirectToPage("/forms/Worker/WorkerHome");
 
             }
-            else if(designation == 5)
+            else if (designation == 5)
             {
-                return RedirectToPage("/forms/HR/shortlist", new {EmployeeID});
+                return RedirectToPage("/forms/HR/shortlist", new { EmployeeID });
             }
             else
             {
                 return RedirectToPage("/index");
             }
-            
+
         }
 
     }

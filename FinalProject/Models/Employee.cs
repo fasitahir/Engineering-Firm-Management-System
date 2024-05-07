@@ -2,7 +2,7 @@
 {
 	public class Employee
 	{
-        public Applicant applicant = new Applicant();
+        public Applicant applicant { get; set; } = new Applicant();
         public int EmployeeId { get; set; }
         public int Designation {  get; set; }
         public string DesignationName { get; set; }
@@ -12,6 +12,6 @@
         public bool IsPaid { get; set; }
         public double PaidAmount { get; set; }
         public string EmployeeNo { get; set; }
-
+        public bool IsActive { get; set; }
     }
 }

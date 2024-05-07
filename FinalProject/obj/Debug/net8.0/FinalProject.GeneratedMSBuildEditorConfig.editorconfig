@@ -34,6 +34,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcZm9ybXNcSFJcQWRkQXNFbXBsb3llZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/FasiTahir/4th Semester/DB/FinalProjectDB/FinalProject/Pages/forms/HR/EditEmployee.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcZm9ybXNcSFJcRWRpdEVtcGxveWVlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/FasiTahir/4th Semester/DB/FinalProjectDB/FinalProject/Pages/forms/HR/ManageEmployee.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcZm9ybXNcSFJcTWFuYWdlRW1wbG95ZWUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/FasiTahir/4th Semester/DB/FinalProjectDB/FinalProject/Pages/forms/HR/shortlist.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcZm9ybXNcSFJcc2hvcnRsaXN0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -42,16 +50,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcZm9ybXNcSFJcU2hvcnRsaXN0ZWRkQXBwbGljYW50cy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/FasiTahir/4th Semester/DB/FinalProjectDB/FinalProject/Pages/forms/InventoryManager/addStock.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcZm9ybXNcSW52ZW50b3J5TWFuYWdlclxhZGRTdG9jay5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/FasiTahir/4th Semester/DB/FinalProjectDB/FinalProject/Pages/forms/InventoryManager/EditStock.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcZm9ybXNcSW52ZW50b3J5TWFuYWdlclxFZGl0U3RvY2suY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/FasiTahir/4th Semester/DB/FinalProjectDB/FinalProject/Pages/forms/InventoryManager/IMHome.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcZm9ybXNcSW52ZW50b3J5TWFuYWdlclxJTUhvbWUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/FasiTahir/4th Semester/DB/FinalProjectDB/FinalProject/Pages/forms/InventoryManager/IM_Items.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcZm9ybXNcSW52ZW50b3J5TWFuYWdlclxJTV9JdGVtcy5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/FasiTahir/4th Semester/DB/FinalProjectDB/FinalProject/Pages/forms/InventoryManager/IM_ManageStock.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcZm9ybXNcSW52ZW50b3J5TWFuYWdlclxJTV9NYW5hZ2VTdG9jay5jc2h0bWw=
+[D:/FasiTahir/4th Semester/DB/FinalProjectDB/FinalProject/Pages/forms/InventoryManager/manageInventory.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcZm9ybXNcSW52ZW50b3J5TWFuYWdlclxtYW5hZ2VJbnZlbnRvcnkuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/FasiTahir/4th Semester/DB/FinalProjectDB/FinalProject/Pages/forms/Worker/WorkerHome.cshtml]
@@ -80,6 +92,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/FasiTahir/4th Semester/DB/FinalProjectDB/FinalProject/Pages/Shared/_LayoutForHR.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXRGb3JIUi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/FasiTahir/4th Semester/DB/FinalProjectDB/FinalProject/Pages/Shared/_LayoutForInventoryManager.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXRGb3JJbnZlbnRvcnlNYW5hZ2VyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/FasiTahir/4th Semester/DB/FinalProjectDB/FinalProject/Pages/Shared/_LayoutInventoryManager.cshtml]

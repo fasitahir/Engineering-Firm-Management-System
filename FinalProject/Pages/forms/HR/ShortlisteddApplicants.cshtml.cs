@@ -11,13 +11,12 @@ namespace FinalProject.Pages.forms.HR
 
         public List<Applicant> applicants = new List<Applicant>();
 
+        public static SqlConnection con = Configuration.getInstance().getConnection();
+
         public void OnGet()
         {
             try
             {
-
-
-                var con = Configuration.getInstance().getConnection();
                 SqlCommand cmd = new SqlCommand(@"select ApplicantID, FirstName,Email, PrimaryPhone, LastName 
                     from Person p join Applicant a on p.PersonID = a.ApplicantID
                     where a.isRejected = 0 and a.isSelected = 0 and a.isShortlisted = 1

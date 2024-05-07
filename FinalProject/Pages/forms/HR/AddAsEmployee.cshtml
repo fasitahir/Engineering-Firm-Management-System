@@ -61,19 +61,31 @@
                             <input class="form-check-input" type="checkbox" asp-for="employee.applicant.isSelected" id="selection">
                             <label class="form-check-label" for="selection">Is Selected</label>
                         </div>
-
-
-
+                
                     </div>
                 </div>
+                
+                @* HidenFields *@
+                <input type="hidden" asp-for="emergencyContact.person.Gender" id="emergencyContactGenderHidden" name="emergencyContactGenderHidden" />
+                <input type="hidden" asp-for="emergencyContact.person.FirstName" id="emergencyContactFirstNameHidden" name="emergencyContactFirstNameHidden" />
+                <input type="hidden" asp-for="emergencyContact.person.LastName" id="emergencyContactLastNameHidden" name="emergencyContactLastNameHidden" />
+                <input type="hidden" asp-for="emergencyContact.person.CNIC" id="emergencyContactCNICHidden" name="emergencyContactCNICHidden" />
+                <input type="hidden" asp-for="emergencyContact.person.PrimaryPhone" id="emergencyContactPrimaryPhoneHidden" name="emergencyContactPrimaryPhoneHidden" />
+                <input type="hidden" asp-for="emergencyContact.person.AlternatePhone" id="emergencyContactAlternatePhoneHidden" name="emergencyContactAlternatePhoneHidden" />
+                <input type="hidden" asp-for="emergencyContact.relation" id="emergencyContactrelationHidden" name="emergencyContactrelationHidden" />
+                <input type="hidden" asp-for="emergencyContact.person.Email" id="emergencyContactEmailHidden" name="emergencyContactEmailHidden" />
+                <input type="hidden" asp-for="emergencyContact.person.Address" id="emergencyContactAddressHidden" name="emergencyContactAddressHidden" />
+                <input type="hidden" asp-for="emergencyContact.person.DateOfBirth" id="emergencyContactDateOfBirthHidden" name="emergencyContactDateOfBirthHidden" />
+
                 <div class="card mb-4">
                     <div class="card-body">
                         <h3 class="mb-3">Salary Details</h3>
                         <div class="row mb-3">
                             <div class="col">
                                 <label for="baseSalary" class="form-label">Base Salary:</label>
-                                <input type="text" class="form-control" asp-for="employee.Salary" id="baseSalary" name="baseSalary">
+                                <input type="number" step="any" class="form-control" asp-for="employee.Salary" id="baseSalary" name="baseSalary">
                             </div>
+
                             <div class="col">
                                 <label for="designation" class="form-label">Designation:</label>
                                 @Html.DropDownListFor(model => model.employee.Designation,  new List<SelectListItem>
@@ -88,6 +100,7 @@
                                 @Html.ValidationMessageFor(model => model.employee.Designation, "", new { @class = "text-danger" })
 
                             </div>
+                            
                         </div>
                     </div>
 
@@ -95,7 +108,7 @@
                 <div class="text-center">
                     <!-- Center the button -->
                     <button type="submit" class="btn btn-primary btn-proceed" onclick="showEmergencyContactModal()">Proceed</button>
-                    
+
                 </div>
                 
             </form>
@@ -166,7 +179,7 @@
                                     
 
                                 <div class="mb-3">
-                                    <label for="emergencyContactGender" class="form-label">Gener of Emergency Contact</label>
+                                    <label for="emergencyContactGender" class="form-label">Gender of Emergency Contact</label>
                                     @Html.DropDownListFor(model => model.emergencyContact.person.Gender, new List<SelectListItem>
                                     {
                                     new SelectListItem { Text = "Male", Value = "1" },
@@ -212,7 +225,7 @@
                             </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Save</button>
+                                <button type="submit" class="btn btn-primary" onclick="showEmergencyContactModal()" data-bs-dismiss="modal">Save</button>
                                 </div>
                               </form>
 
@@ -247,19 +260,41 @@
         });
     });
 
-    function saveEmergencyContact() {
-        // Add code to save emergency contact information here
-        // This function will be called when the modal form is submitted
-        // Example: Send data to server via AJAX or store locally
-        const contactName = document.getElementById("emergencyContactFirstName").value;
-        const contactNumber = document.getElementById("emergencyContactPrimaryPhone").value;
+    function saveEmergencyContact() 
+    {
+        // Get values from the emergency contact modal form
+        const contactGender = document.getElementById("emergencyContactGenderHidden").value;
+        const contactFirstName = document.getElementById("emergencyContactFirstNameHidden").value;
+        const contactLastName = document.getElementById("emergencyContactLastNameHidden").value;
+        const contactCNIC = document.getElementById("emergencyContactCNICHidden").value;
+        const contactPrimaryPhone = document.getElementById("emergencyContactPrimaryPhoneHidden").value;
+        const contactAlternatePhone = document.getElementById("emergencyContactAlternatePhoneHidden").value;
+        const contactRelation = document.getElementById("emergencyContactrelationHidden").value;
+        const contactEmail = document.getElementById("emergencyContactEmailHidden").value;
+        const contactAddress = document.getElementById("emergencyContactAddressHidden").value;
+        const contactDob = document.getElementById("emergencyContactDateOfBirthHidden").value;
+        
+                                            
+        
+        // Get other emergency contact values similarly
 
-        // Log the data for demonstration
-        console.log("Emergency Contact Name:", contactName);
-        console.log("Emergency Contact Number:", contactNumber);
+        // Set the values of hidden fields
+        document.getElementById("emergencyContactGenderHidden").value = contactGender;
+        document.getElementById("emergencyContactFirstNameHidden").value = contactFirstName;
+        document.getElementById("emergencyContactLastNameHidden").value = contactLastName;
+        document.getElementById("emergencyContactCNICHidden").value = contactCNIC;
+        document.getElementById("emergencyContactPrimaryPhoneHidden").value=contactPrimaryPhone ;
+        document.getElementById("emergencyContactAlternatePhoneHidden").value=   contactAlternatePhone ;
+        document.getElementById("emergencyContactrelationHidden").value = contactRelation ;
+         document.getElementById("emergencyContactEmailHidden").value=contactEmail ;
+        document.getElementById("emergencyContactAddressHidden").value=contactAddress ;
+        document.getElementById("emergencyContactDateOfBirthHidden").value = contactDob ;
+
+        // Set other hidden field values similarly
 
         // Close the modal
         const modal = new bootstrap.Modal(document.getElementById("emergencyContactModal"));
         modal.hide();
     }
+
 </script>

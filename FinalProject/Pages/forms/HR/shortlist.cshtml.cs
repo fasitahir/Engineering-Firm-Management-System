@@ -9,6 +9,7 @@ namespace FinalProject.Pages.forms.HR
     public class shortlistModel : PageModel
     {
 
+        public static SqlConnection con = Configuration.getInstance().getConnection();
         public List<Applicant> applicants = new List<Applicant>();
         public string SelectedStatusText { get; set; }  = "All Applicants";
         public void OnGet(string status)
@@ -42,7 +43,6 @@ namespace FinalProject.Pages.forms.HR
         {
             try
             {
-                var con = Configuration.getInstance().getConnection();
                 SqlCommand cmd = new SqlCommand(@"select ApplicantID, FirstName, Email, PrimaryPhone, CVName 
                     from Person p join Applicant a on p.PersonID = a.ApplicantID
                     where a.isRejected = 0 and a.isSelected = 0 and a.isShortlisted = 0
@@ -76,7 +76,6 @@ namespace FinalProject.Pages.forms.HR
             try
             {
 
-                var con = Configuration.getInstance().getConnection();
                 SqlCommand cmd;
                 if (status == "shortlisted")
                 {
@@ -132,16 +131,15 @@ namespace FinalProject.Pages.forms.HR
         {
             try
             {
-                var con = Configuration.getInstance().getConnection();
-
-                var cmd = new SqlCommand(@"UPDATE Applicant SET isShortlisted = 1 WHERE ApplicantID = @ApplicantID", con);
+                
+                SqlCommand cmd = new SqlCommand(@"UPDATE Applicant SET isShortlisted = 1 WHERE ApplicantID = @ApplicantID", con);
                 
 
                 cmd.Parameters.AddWithValue("@ApplicantID", applicantId);
                 await cmd.ExecuteNonQueryAsync();
 
 
-                return Page();
+                return RedirectToPage();
             }
             catch (Exception e)
             {
@@ -153,14 +151,12 @@ namespace FinalProject.Pages.forms.HR
         {
             try
             {
-                var con = Configuration.getInstance().getConnection();
-
-                var cmd = new SqlCommand(@"UPDATE Applicant SET isRejected = 1 WHERE ApplicantID = @ApplicantID", con);
+                
+                SqlCommand cmd = new SqlCommand(@"UPDATE Applicant SET isRejected = 1 WHERE ApplicantID = @ApplicantID", con);
                 cmd.Parameters.AddWithValue("@ApplicantID", applicantId);
                 await cmd.ExecuteNonQueryAsync();
 
-
-                return Page();
+                return RedirectToPage();
             }
             catch (Exception e)
             {
