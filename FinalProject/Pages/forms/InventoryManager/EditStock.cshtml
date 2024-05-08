@@ -8,11 +8,14 @@
     <form method="post">
         <div class="mb-3">
             <label for="stockId" class="form-label"><strong>Select Stock ID</strong></label>
-            <select class="form-select" id="stockId" name="StockId">
-                <option value="1">Stock ID 1</option>
-                <option value="2">Stock ID 2</option>
-                <!-- Add more options as needed -->
+            <select id="stockIdDropDown" name="stockIdDropDown" class="form-select" onchange="this.form.submit()">
+                <option value="0">Select Stock ID</option>
+                @foreach (var stockId in EditStockModel.ids)
+                {
+                    <option value="@stockId">Stock ID @stockId</option>
+                }
             </select>
+
         </div>
         <hr>
         <div class="row mb-3">
@@ -132,4 +135,10 @@
         // You can use AJAX to send the form data to the server
         // After adding the item, you can dynamically populate the table with the added item
     }
+
+    document.getElementById('stockId').addEventListener('change', function () {
+        var selectedStockId = this.value;
+        // Do something with the selected stock ID, such as sending it to the backend
+    });
+
 </script>

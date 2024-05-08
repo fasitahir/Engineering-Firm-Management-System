@@ -22,7 +22,6 @@ namespace FinalProject.Pages.forms.InventoryManager
             if(items.Count > 0)
             {
                 SqlCommand getStockId = new SqlCommand(@"SELECT ISNULL(MAX(StockID),0)+1 FROM Stock", con);
-                getStockId.Parameters.AddWithValue("@ItemName", item.ItemName);
                 int StockId = (int)getStockId.ExecuteScalar();
 
                 foreach (var item in items)
