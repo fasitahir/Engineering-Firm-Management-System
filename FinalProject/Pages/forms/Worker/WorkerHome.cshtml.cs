@@ -5,6 +5,7 @@ namespace FinalProject.Pages.forms.Worker
 {
     public class WorkerHomeModel : PageModel
     {
+
         public void OnGet()
         {
 
