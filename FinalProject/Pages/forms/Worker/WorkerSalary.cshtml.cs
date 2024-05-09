@@ -8,14 +8,14 @@ namespace FinalProject.Pages.forms.Worker
     public class WorkerSalaryModel : PageModel
     {
         public List<Employee> employees = new List<Employee>();
-        public static SqlConnection con = Configuration.getInstance().getConnection();
+        private static SqlConnection con = Configuration.getInstance().getConnection();
         public void OnGet()
         {
             try
             {
                 SqlCommand cmd = new SqlCommand("SELECT CAST(PaidAmount AS float), PaidDate, isPaid " +
-                    "FROM Salary S " +
-                    "WHERE S.EmployeeID = @EmployeeID ", con);
+                    "FROM ViewSalary " +
+                    "WHERE EmployeeID = @EmployeeID ", con);
                 cmd.Parameters.AddWithValue("@EmployeeID", IndexModel.employeeId);
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
