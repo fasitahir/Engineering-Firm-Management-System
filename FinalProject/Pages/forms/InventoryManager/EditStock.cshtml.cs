@@ -19,10 +19,10 @@ namespace FinalProject.Pages.forms.InventoryManager
         public void OnGet()
         {
             SqlCommand cmd = new SqlCommand(@"SELECT StockId From Stock", con);
-            using(SqlDataReader reader = cmd.ExecuteReader())
+            using (SqlDataReader reader = cmd.ExecuteReader())
             {
                 ids.Clear();
-                while(reader.Read())
+                while (reader.Read())
                 {
                     int StockId = reader.GetInt32(0);
 
@@ -34,7 +34,7 @@ namespace FinalProject.Pages.forms.InventoryManager
             ids.Distinct();
         }
 
-        public void OnPost() 
+        public void OnPost()
         {
             try
             {
@@ -53,7 +53,7 @@ namespace FinalProject.Pages.forms.InventoryManager
                     {
                         Item item = new Item();
                         item.ItemName = reader.GetString(0);
-                        if(!reader.IsDBNull(1))
+                        if (!reader.IsDBNull(1))
                         {
                             item.Description = reader.GetString(1);
                         }
@@ -68,11 +68,11 @@ namespace FinalProject.Pages.forms.InventoryManager
                     initialCount = items.Count();
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
-            
+
         }
 
 
@@ -80,70 +80,81 @@ namespace FinalProject.Pages.forms.InventoryManager
         {
             if (items.Count > 0)
             {
-                items.RemoveRange(0, initialCount);
-
-                int StockId = stockId;
-
-                foreach (var item in items)
+                using (SqlTransaction transaction = con.BeginTransaction())
                 {
-
-                    SqlCommand check = new SqlCommand(@"SELECT COUNT(*) FROM Item I WHERE I.ItemName Like @ItemName", con);
-                    check.Parameters.AddWithValue("@ItemName", item.ItemName);
-                    int count = (int)check.ExecuteScalar();
-                    SqlCommand cmd;
-                    if (count > 0)
+                    try
                     {
-                        SqlCommand getId = new SqlCommand(@"SELECT ItemID FROM Item I WHERE I.ItemName LIKE @ItemName", con);
-                        getId.Parameters.AddWithValue("@ItemName", item.ItemName);
-                        int itemId = (int)getId.ExecuteScalar();
+                        items.RemoveRange(0, initialCount);
 
-                        cmd = new SqlCommand(@"UPDATE Item 
+                        int StockId = stockId;
+
+                        foreach (var item in items)
+                        {
+                            SqlCommand check = new SqlCommand(@"SELECT COUNT(*) FROM Item I WHERE I.ItemName Like @ItemName", con, transaction);
+                            check.Parameters.AddWithValue("@ItemName", item.ItemName);
+                            int count = (int)check.ExecuteScalar();
+                            SqlCommand cmd;
+                            if (count > 0)
+                            {
+                                SqlCommand getId = new SqlCommand(@"SELECT ItemID FROM Item I WHERE I.ItemName LIKE @ItemName", con, transaction);
+                                getId.Parameters.AddWithValue("@ItemName", item.ItemName);
+                                int itemId = (int)getId.ExecuteScalar();
+
+                                cmd = new SqlCommand(@"UPDATE Item 
                             SET AvailableQuantity = AvailableQuantity + @AvailableQuantity, SalePrice = @SalePrice
                             WHERE ItemID = @ItemID;
                             INSERT INTO Stock
-                            VALUES (@StockID, @ItemID, null, null, @ArrivalDate, @CostPrice, @CurrentStockQuantity, @InitialQuantity)
-                            ", con);
-                        cmd.Parameters.AddWithValue("@ItemID", itemId);
-                    }
-                    else
-                    {
-                        cmd = new SqlCommand(@"INSERT INTO Item 
+                            VALUES (@StockID, @ItemID, null, null, @ArrivalDate, @CostPrice, @CurrentStockQuantity, @InitialQuantity)", con, transaction);
+                                cmd.Parameters.AddWithValue("@ItemID", itemId);
+                            }
+                            else
+                            {
+                                cmd = new SqlCommand(@"INSERT INTO Item 
                             Values (@ItemName, @AvailableQuantity, @Description, @MeasurementUnit, @SalePrice, null, null)
                             INSERT INTO Stock
-                            VALUES (@StockID, (SELECT MAX(ItemID) FROM Item), null, null, @ArrivalDate, @CostPrice, @CurrentStockQuantity, @InitialQuantity)
-                            ", con);
-                    }
+                            VALUES (@StockID, (SELECT MAX(ItemID) FROM Item), null, null, @ArrivalDate, @CostPrice, @CurrentStockQuantity, @InitialQuantity)", con, transaction);
+                            }
 
-                    cmd.Parameters.AddWithValue("@ItemName", item.ItemName);
-                    cmd.Parameters.AddWithValue("@AvailableQuantity", item.CurrentQuantity);
-                    cmd.Parameters.AddWithValue("@StockID", StockId);
-                    if (string.IsNullOrEmpty(item.Description))
-                    {
-                        cmd.Parameters.AddWithValue("@Description", DBNull.Value);
-                    }
-                    else
-                    {
-                        cmd.Parameters.AddWithValue("@Description", item.Description);
-                    }
-                    cmd.Parameters.AddWithValue("@MeasurementUnit", item.MeasurementUnit);
-                    cmd.Parameters.AddWithValue("@SalePrice", item.SalePrice);
-                    cmd.Parameters.AddWithValue("@CostPrice", item.CostPrice);
-                    cmd.Parameters.AddWithValue("@ArrivalDate", item.ArrivalDate);
-                    cmd.Parameters.AddWithValue("@CurrentStockQuantity", item.CurrentQuantity);
-                    cmd.Parameters.AddWithValue("@InitialQuantity", item.CurrentQuantity);
-                    cmd.ExecuteNonQuery();
+                            cmd.Parameters.AddWithValue("@ItemName", item.ItemName);
+                            cmd.Parameters.AddWithValue("@AvailableQuantity", item.CurrentQuantity);
+                            cmd.Parameters.AddWithValue("@StockID", StockId);
+                            if (string.IsNullOrEmpty(item.Description))
+                            {
+                                cmd.Parameters.AddWithValue("@Description", DBNull.Value);
+                            }
+                            else
+                            {
+                                cmd.Parameters.AddWithValue("@Description", item.Description);
+                            }
+                            cmd.Parameters.AddWithValue("@MeasurementUnit", item.MeasurementUnit);
+                            cmd.Parameters.AddWithValue("@SalePrice", item.SalePrice);
+                            cmd.Parameters.AddWithValue("@CostPrice", item.CostPrice);
+                            cmd.Parameters.AddWithValue("@ArrivalDate", item.ArrivalDate);
+                            cmd.Parameters.AddWithValue("@CurrentStockQuantity", item.CurrentQuantity);
+                            cmd.Parameters.AddWithValue("@InitialQuantity", item.CurrentQuantity);
+                            cmd.ExecuteNonQuery();
+                        }
 
+                        // Commit the transaction
+                        transaction.Commit();
+
+                        items.Clear();
+                        return RedirectToPage("/forms/InventoryManager/manageInventory");
+                    }
+                    catch (Exception ex)
+                    {
+                        // Rollback the transaction if an exception occurs
+                        transaction.Rollback();
+                        // Log or handle the exception
+                        Console.WriteLine("Exception occurred: " + ex.Message);
+                        return RedirectToPage("/Error");
+                    }
                 }
-                items.Clear();
-                return RedirectToPage("/forms/InventoryManager/manageInventory");
-
-
             }
             else
             {
                 return RedirectToPage();
             }
-
         }
 
 

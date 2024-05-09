@@ -16,7 +16,8 @@ namespace FinalProject.Pages.forms.InventoryManager
         public int id { get; set; }
 		public void OnGet()
 		{
-			SqlCommand cmd = new SqlCommand(@"SELECT ItemName, Description, SalePrice, MeasurementUnit, ItemID FROM Item", con);
+			SqlCommand cmd = new SqlCommand(@"SELECT ItemName, Description, SalePrice, MeasurementUnit, ItemID 
+            FROM ViewItems", con);
 			using (SqlDataReader reader =cmd.ExecuteReader())
 			{
 				while(reader.Read())
