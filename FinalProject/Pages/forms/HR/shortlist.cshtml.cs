@@ -10,7 +10,8 @@ namespace FinalProject.Pages.forms.HR
     {
 
         public static SqlConnection con = Configuration.getInstance().getConnection();
-        public List<Applicant> applicants = new List<Applicant>();
+        [BindProperty]
+        public List<Applicant> applicants { get; set; } = new List<Applicant>();
         public string SelectedStatusText { get; set; }  = "All Applicants";
         public void OnGet(string status)
         {
@@ -43,9 +44,9 @@ namespace FinalProject.Pages.forms.HR
         {
             try
             {
-                SqlCommand cmd = new SqlCommand(@"select ApplicantID, FirstName, Email, PrimaryPhone, CVName 
-                    from Person p join Applicant a on p.PersonID = a.ApplicantID
-                    where a.isRejected = 0 and a.isSelected = 0 and a.isShortlisted = 0
+                SqlCommand cmd = new SqlCommand(@"SELECT ApplicantID, FirstName, Email, PrimaryPhone, CVName 
+                    FROM ViewApplicants
+                    where isRejected = 0 and isSelected = 0 and isShortlisted = 0
                     ", con);
 
                 using (SqlDataReader reader = cmd.ExecuteReader())
@@ -80,24 +81,24 @@ namespace FinalProject.Pages.forms.HR
                 if (status == "shortlisted")
                 {
                     cmd = new SqlCommand(@"select ApplicantID, FirstName, Email, PrimaryPhone, isShortlisted, isRejected, isSelected, CVName 
-                    from Person p join Applicant a on p.PersonID = a.ApplicantID
-                    where a.isRejected = 0 and a.isSelected = 0 and a.isShortlisted = 1
+                    FROM ViewApplicants
+                    where isRejected = 0 and isSelected = 0 and isShortlisted = 1
                     ", con);
 
                 }
                 else if(status == "rejected")
                 {
                     cmd = new SqlCommand(@"select ApplicantID, FirstName, Email, PrimaryPhone, isShortlisted, isRejected, isSelected, CVName
-                    from Person p join Applicant a on p.PersonID = a.ApplicantID
-                    where a.isRejected = 1 and a.isSelected = 0
+                    FROM ViewApplicants
+                    where isRejected = 1 and isSelected = 0
                     ", con);
                 }
                 else
                 {
                     //All selected
                     cmd = new SqlCommand(@"select ApplicantID, FirstName, Email, PrimaryPhone, isShortlisted, isRejected, isSelected, CVName  
-                    from Person p join Applicant a on p.PersonID = a.ApplicantID
-                    where a.isRejected = 0 and a.isSelected = 1
+                    FROM ViewApplicants
+                    where isRejected = 0 and isSelected = 1
                     ", con);
                 }
 

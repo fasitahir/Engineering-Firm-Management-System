@@ -1,13 +1,11 @@
 ﻿@page
 @model FinalProject.Pages.forms.HR.EditEmployeeModel
 @{
-	Layout = "/Pages/Shared/_LayoutForHR.cshtml";
-
+    Layout = "/Pages/Shared/_LayoutForHR.cshtml";
 }
 
-
 <div class="container">
-    <h1>Edit Employee</h1>
+    <h1 class="mb-4">Edit Employee</h1>
     <form method="post">
         <div class="row">
             <div class="col-md-6">
@@ -15,52 +13,39 @@
                     <label asp-for="employee.EmployeeId" class="form-label">Employee ID</label>
                     <input asp-for="employee.EmployeeId" class="form-control" disabled />
                 </div>
-            </div>
-            <div class="col-md-6">
                 <div class="mb-3">
                     <label for="firstName" class="form-label">First Name</label>
-                    <input asp-for="employee.applicant.person.FirstName" type="text" class="form-control" id="firstName" >
+                    <input asp-for="employee.applicant.person.FirstName" type="text" class="form-control" id="firstName">
+                </div>
+                <div class="mb-3">
+                    <label for="primaryPhone" class="form-label">Primary Phone</label>
+                    <input asp-for="employee.applicant.person.PrimaryPhone" type="text" class="form-control" id="primaryPhone">
                 </div>
             </div>
-        </div>
-        <div class="row">
             <div class="col-md-6">
                 <div class="mb-3">
                     <label for="lastName" class="form-label">Last Name</label>
                     <input asp-for="employee.applicant.person.LastName" type="text" class="form-control" id="lastName">
                 </div>
-            </div>
-            <div class="col-md-6">
                 <div class="mb-3">
                     <label for="cnic" class="form-label">CNIC</label>
-                    <input asp-for="employee.applicant.person.CNIC" type="text" class="form-control" id="cnic" >
+                    <input asp-for="employee.applicant.person.CNIC" type="text" class="form-control" id="cnic">
                 </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="mb-3">
-                    <label for="primaryPhone" class="form-label">Primary Phone</label>
-                    <input asp-for="employee.applicant.person.PrimaryPhone" type="text" class="form-control" id="primaryPhone" >
-                </div>
-            </div>
-            <div class="col-md-6">
                 <div class="mb-3">
                     <label for="alternatePhone" class="form-label">Alternate Phone</label>
-                    <input asp-for="employee.applicant.person.AlternatePhone" type="text" class="form-control" id="alternatePhone" >
+                    <input asp-for="employee.applicant.person.AlternatePhone" type="text" class="form-control" id="alternatePhone">
                 </div>
             </div>
         </div>
         <div class="mb-3">
             <label for="email" class="form-label">Email</label>
-            <input asp-for="employee.applicant.person.Email" type="email" class="form-control" id="email"  >
+            <input asp-for="employee.applicant.person.Email" type="email" class="form-control" id="email">
         </div>
         <div class="mb-3">
             <label for="address" class="form-label">Address</label>
             <textarea asp-for="employee.applicant.person.Address" class="form-control" id="address"></textarea>
         </div>
-        <button type="submit" class="btn btn-primary" style="margin: auto; display: block;">Update</button>
+        <button type="submit" class="btn btn-primary">Update</button>
+        <a href="/forms/HR/ManageEmployee" class="btn btn-danger ms-2">Back</a>
     </form>
-    <a href="/forms/HR/ManageEmployee" class="btn btn-danger mt-3">Back</a>
 </div>
-

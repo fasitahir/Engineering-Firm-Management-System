@@ -49,10 +49,8 @@ namespace FinalProject.Pages.forms.HR
         {
             try
             {
-                SqlCommand cmd = new SqlCommand(@"SELECT EmployeeID, EmployeeNumber, FirstName + ' ' + ISNULL(LastName, ' ') As FullName, CNIC, PrimaryPhone, Email, l.Value AS Designation, IsActive
-                FROM Employee E
-                JOIN Person P ON P.PersonID = E.EmployeeID
-                JOIN Lookup l ON E.DesignationID = l.lookupID 
+                SqlCommand cmd = new SqlCommand(@"SELECT EmployeeID, EmployeeNumber, FirstName + ' ' + ISNULL(LastName, ' ') As FullName, CNIC, PrimaryPhone, Email, Value AS Designation, IsActive
+                FROM ViewEmployee 
                 WHERE IsActive = 1", con);
 
                 using (SqlDataReader reader = cmd.ExecuteReader())
@@ -88,47 +86,37 @@ namespace FinalProject.Pages.forms.HR
                 SqlCommand cmd;
                 if (status == "HR")
                 {
-                    cmd = new SqlCommand(@"SELECT EmployeeID, EmployeeNumber, FirstName + ' ' + ISNULL(LastName, ' ') As FullName, CNIC, PrimaryPhone, Email, l.Value AS Designation, IsActive
-                        FROM Employee E
-                        JOIN Person P ON P.PersonID = E.EmployeeID
-                        JOIN Lookup l ON E.DesignationID = l.lookupID
-                        WHERE IsActive = 1 AND l.lookupID = 5", con);
+                    cmd = new SqlCommand(@"SELECT EmployeeID, EmployeeNumber, FirstName + ' ' + ISNULL(LastName, ' ') As FullName, CNIC, PrimaryPhone, Email, Value AS Designation, IsActive
+                        FROM ViewEmployee
+                        WHERE IsActive = 1 AND lookupID = 5", con);
 
                 }
                 else if (status == "Worker")
                 {
-                    cmd = new SqlCommand(@"SELECT EmployeeID, EmployeeNumber, FirstName + ' ' + ISNULL(LastName, ' ') As FullName, CNIC, PrimaryPhone, Email, l.Value AS Designation, IsActive
-                        FROM Employee E
-                        JOIN Person P ON P.PersonID = E.EmployeeID
-                        JOIN Lookup l ON E.DesignationID = l.lookupID
-                        WHERE IsActive = 1 AND l.lookupID = 3", con);
+                    cmd = new SqlCommand(@"SELECT EmployeeID, EmployeeNumber, FirstName + ' ' + ISNULL(LastName, ' ') As FullName, CNIC, PrimaryPhone, Email, Value AS Designation, IsActive
+                        FROM ViewEmployee
+                        WHERE IsActive = 1 AND lookupID = 3", con);
                 }
                 else if(status == "Accountant")
                 {
                     //All selected
-                    cmd = new SqlCommand(@"SELECT EmployeeID, EmployeeNumber, FirstName + ' ' + ISNULL(LastName, ' ') As FullName, CNIC, PrimaryPhone, Email, l.Value AS Designation, IsActive
-                        FROM Employee E
-                        JOIN Person P ON P.PersonID = E.EmployeeID
-                        JOIN Lookup l ON E.DesignationID = l.lookupID
-                        WHERE IsActive = 1 AND l.lookupID = 4", con);
+                    cmd = new SqlCommand(@"SELECT EmployeeID, EmployeeNumber, FirstName + ' ' + ISNULL(LastName, ' ') As FullName, CNIC, PrimaryPhone, Email, Value AS Designation, IsActive
+                        FROM ViewEmployee
+                        WHERE IsActive = 1 AND lookupID = 4", con);
                 }
 
                 else if (status == "Inventory")
                 {
                     //All selected
-                    cmd = new SqlCommand(@"SELECT EmployeeID, EmployeeNumber, FirstName + ' ' + ISNULL(LastName, ' ') As FullName, CNIC, PrimaryPhone, Email, l.Value AS Designation, IsActive
-                        FROM Employee E
-                        JOIN Person P ON P.PersonID = E.EmployeeID
-                        JOIN Lookup l ON E.DesignationID = l.lookupID
-                        WHERE IsActive = 1 AND l.lookupID = 6", con);
+                    cmd = new SqlCommand(@"SELECT EmployeeID, EmployeeNumber, FirstName + ' ' + ISNULL(LastName, ' ') As FullName, CNIC, PrimaryPhone, Email, Value AS Designation, IsActive
+                        FROM ViewEmployee
+                        WHERE IsActive = 1 AND lookupID = 6", con);
                 }
                 else
                 {
                     //All selected
-                    cmd = new SqlCommand(@"SELECT EmployeeID, EmployeeNumber, FirstName + ' ' + ISNULL(LastName, ' ') As FullName, CNIC, PrimaryPhone, Email, l.Value AS Designation, IsActive
-                        FROM Employee E
-                        JOIN Person P ON P.PersonID = E.EmployeeID
-                        JOIN Lookup l ON E.DesignationID = l.lookupID
+                    cmd = new SqlCommand(@"SELECT EmployeeID, EmployeeNumber, FirstName + ' ' + ISNULL(LastName, ' ') As FullName, CNIC, PrimaryPhone, Email, Value AS Designation, IsActive
+                        FROM ViewEmployee
                         WHERE IsActive = 0", con);
                 }
 
@@ -165,26 +153,11 @@ namespace FinalProject.Pages.forms.HR
             {
 
 
-                SqlCommand cmd = new SqlCommand("UPDATE Employee SET IsActive = 0 WHERE EmployeeID = @EmployeeId", con);
-                
-                    cmd.Parameters.AddWithValue("@EmployeeId", employeeId);
-                    await con.OpenAsync();
-
-                    int rowsAffected = await cmd.ExecuteNonQueryAsync();
-
-                    if (rowsAffected > 0)
-                    {
-                        using (var deleteCredentialsCmd = new SqlCommand("DELETE FROM Credentials WHERE EmployeeID = @EmployeeId", con))
-                        {
-                            deleteCredentialsCmd.Parameters.AddWithValue("@EmployeeId", employeeId);
-                            await deleteCredentialsCmd.ExecuteNonQueryAsync();
-                        }
-                        return RedirectToPage(); // Return 200 OK response if deletion is successful
-                    }
-                    else
-                    {
-                        return new NotFoundResult(); // Return 404 Not Found if employee with the given ID does not exist
-                    }
+                SqlCommand cmd = new SqlCommand("stp_DeleteEmployee", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@EmployeeId", employeeId);
+                cmd.ExecuteNonQuery();
+                return RedirectToPage();
                 
             }
             catch (Exception ex)

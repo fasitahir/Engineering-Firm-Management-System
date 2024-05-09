@@ -10,6 +10,8 @@ namespace FinalProject.Pages
     public class IndexModel : PageModel
     {
         [BindProperty]
+        public static int employeeId { get; set; } = 0;
+        [BindProperty]
         public Credentials credential { get; set; }
         private readonly ILogger<IndexModel> _logger;
 
@@ -78,12 +80,20 @@ namespace FinalProject.Pages
 
             if (designation == 3)
             {
-                return RedirectToPage("/forms/Worker/WorkerHome");
+                return RedirectToPage("/forms/Worker/WorkerHome", new { EmployeeID });
 
             }
             else if (designation == 5)
             {
-                return RedirectToPage("/forms/HR/shortlist", new { EmployeeID });
+                return RedirectToPage("/forms/HR/HRHome", new { EmployeeID });
+            }
+            else if(designation == 4)
+            {
+                return RedirectToPage("/forms/Accountant", new { EmployeeID });
+            }
+            else if(designation == 5)
+            {
+                return RedirectToPage("/forms/InventoryManager/IMHome", new { EmployeeID });
             }
             else
             {

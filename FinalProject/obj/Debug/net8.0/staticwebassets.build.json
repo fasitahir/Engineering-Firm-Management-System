@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "t7YaNe4GxQtgS+KLsJ7I576RBLI13kKLctWcBDOJtPg=",
+  "Hash": "2uHNSl6x/QwOF6r89fHVJDrZGPrCWUjXV6/De9OMZS8=",
   "Source": "FinalProject",
   "BasePath": "_content/FinalProject",
   "Mode": "Default",
@@ -262,6 +262,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\CVs\\20240507113516717.pdf"
+    },
+    {
+      "Identity": "D:\\FasiTahir\\4th Semester\\DB\\FinalProjectDB\\FinalProject\\wwwroot\\CVs\\20240510013547645.pdf",
+      "SourceId": "FinalProject",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\FasiTahir\\4th Semester\\DB\\FinalProjectDB\\FinalProject\\wwwroot\\",
+      "BasePath": "_content/FinalProject",
+      "RelativePath": "CVs/20240510013547645.pdf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\CVs\\20240510013547645.pdf"
     },
     {
       "Identity": "D:\\FasiTahir\\4th Semester\\DB\\FinalProjectDB\\FinalProject\\wwwroot\\favicon.ico",
@@ -1573,6 +1592,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Pictures\\20240507113516697.jpg"
+    },
+    {
+      "Identity": "D:\\FasiTahir\\4th Semester\\DB\\FinalProjectDB\\FinalProject\\wwwroot\\Pictures\\20240510013547631.jpg",
+      "SourceId": "FinalProject",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\FasiTahir\\4th Semester\\DB\\FinalProjectDB\\FinalProject\\wwwroot\\",
+      "BasePath": "_content/FinalProject",
+      "RelativePath": "Pictures/20240510013547631.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Pictures\\20240510013547631.jpg"
     }
   ]
 }

@@ -1,10 +1,8 @@
 using FinalProject.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
-using System.Net;
-using System.Reflection;
 
 namespace FinalProject.Pages.forms.HR
 {
@@ -32,15 +30,15 @@ namespace FinalProject.Pages.forms.HR
             try
             {
 
+                //View is used to load data
+                SqlCommand cmd = new SqlCommand(@"SELECT FirstName, LastName, CNIC, PrimaryPhone, L.Value, PictureName, ApplicantID
+                FROM ViewApplicants
+                WHERE ApplicantID = @ApplicantID", con);
 
-                SqlCommand cmd = new SqlCommand(@"SELECT FirstName, LastName, CNIC, PrimaryPhone, L.Value, PictureName
-                                      FROM Person p 
-                                      JOIN Applicant a ON p.PersonID = a.ApplicantID
-                                      JOIN Lookup L ON a.DesiredDesignation = L.lookupID
-                                      WHERE a.ApplicantID = @ApplicantID", con);
 
                 // Add parameter for ApplicantID
                 cmd.Parameters.AddWithValue("@ApplicantID", applicant.applicantID);
+
 
                 // Execute SQL command and read results
                 using (SqlDataReader reader = cmd.ExecuteReader())
@@ -139,103 +137,29 @@ namespace FinalProject.Pages.forms.HR
 
                 try
                 {
-                  
-
-                    // Begin transaction
-                    SqlTransaction transaction = con.BeginTransaction();
-
-                    try
-                    {
-                        // Check if a person with the same CNIC and email exists
-                        SqlCommand checkExistingPerson = new SqlCommand(@"SELECT PersonID 
-                                                                FROM Person 
-                                                                WHERE CNIC = @CNIC OR Email = @Email", con, transaction);
-                        checkExistingPerson.Parameters.AddWithValue("@CNIC", cnic);
-                        checkExistingPerson.Parameters.AddWithValue("@Email", email);
-
-                        int existingPersonId = (int?)checkExistingPerson.ExecuteScalar() ?? 0;
-                        personId = existingPersonId;
-                        // Insert employee and person details
-                        SqlCommand cmd = new SqlCommand(@"INSERT INTO Employee
-                                                VALUES (@EmployeeId, @Designation, null, null, @EmployeeNo, @StartDate, null, 1, @BaseSalary);
-                                                ", con, transaction);
-
-                        cmd.Parameters.AddWithValue("@Designation", designation);
-                        cmd.Parameters.AddWithValue("@EmployeeId", id);
-                        cmd.Parameters.AddWithValue("@StartDate", DateTime.Now);
-                        cmd.Parameters.AddWithValue("@EndDate", DBNull.Value);
-                        cmd.Parameters.AddWithValue("@EmployeeNo", employeeNo);
-                        cmd.Parameters.AddWithValue("@BaseSalary", Salary);
-
-                        // Execute the query and get the inserted person's ID
-                        cmd.ExecuteNonQuery();
-
-                        // If a person with the same CNIC and email already exists, use their ID
-                        if (existingPersonId == 0)
-                        {
-                            SqlCommand addPerson = new SqlCommand(@"   INSERT INTO Person
-                                    OUTPUT INSERTED.PersonID
-                                    VALUES(@Gender, @CNIC, @FirstName, @LastName, @Email, @PrimaryPhone, @AlternatePhone, @DateOfBirth, @Address)", con, transaction);
-                            addPerson.Parameters.AddWithValue("@FirstName", firstName);
-                            addPerson.Parameters.AddWithValue("@Gender", gender);
-                            addPerson.Parameters.AddWithValue("@DateOfBirth", dateOfBirth);
-                            addPerson.Parameters.AddWithValue("@Address", address);
-                            addPerson.Parameters.AddWithValue("@PrimaryPhone", phoneNumber);
-                            addPerson.Parameters.AddWithValue("@CNIC", cnic);
-                            addPerson.Parameters.AddWithValue("@Email", email);
-                            if (!string.IsNullOrEmpty(lastName))
-                            {
-                                addPerson.Parameters.AddWithValue("@LastName", lastName);
-
-                            }
-                            else
-                            {
-                                addPerson.Parameters.AddWithValue("@LastName", DBNull.Value);
-                            }
 
 
+                    SqlCommand cmd = new SqlCommand("stp_AddEmployee", con);
 
-                            if (!string.IsNullOrEmpty(alternateNumber))
-                            {
-                                addPerson.Parameters.AddWithValue("@AlternatePhone", alternateNumber);
+                    cmd.CommandType = CommandType.StoredProcedure;
 
-                            }
-                            else
-                            {
-                                addPerson.Parameters.AddWithValue("@AlternatePhone", DBNull.Value);
-                            }
-                            personId = (int)addPerson.ExecuteScalar();
-                        }
-                        // Insert emergency contact details
-                        SqlCommand cmdEmergencyContact = new SqlCommand(@"INSERT INTO EmergencyContact
-                                                                VALUES (@PersonId, @EmployeeId, @Relationship);", con, transaction);
-                        cmdEmergencyContact.Parameters.AddWithValue("@PersonId", personId);
-                        cmdEmergencyContact.Parameters.AddWithValue("@EmployeeId", id);
-                        cmdEmergencyContact.Parameters.AddWithValue("@Relationship", relation);
-
-                        // Execute emergency contact query
-                        cmdEmergencyContact.ExecuteNonQuery();
-
-                        // Update Applicant
-                        SqlCommand updateApplicant = new SqlCommand(@"UPDATE Applicant
-                                                            SET IsSelected = 1
-                                                            WHERE ApplicantID = @EmployeeId", con, transaction);
-                        updateApplicant.Parameters.AddWithValue("@EmployeeId", id);
-
-                        // Execute update query
-                        updateApplicant.ExecuteNonQuery();
-
-                        // Commit transaction
-                        transaction.Commit();
-                        
-                   
-                    }
-                    catch (Exception ex)
-                    {
-                        // Rollback transaction if an error occurs
-                        transaction.Rollback();
-                        TempData["ErrorMessage"] = ex.Message;
-                    }
+                    // Add parameters
+                    cmd.Parameters.AddWithValue("@Designation", designation);
+                    cmd.Parameters.AddWithValue("@EmployeeId", id);
+                    cmd.Parameters.AddWithValue("@EmployeeNo", employeeNo);
+                    cmd.Parameters.AddWithValue("@StartDate", DateTime.Now);
+                    cmd.Parameters.AddWithValue("@BaseSalary", Salary);
+                    cmd.Parameters.AddWithValue("@FirstName", firstName);
+                    cmd.Parameters.AddWithValue("@LastName", string.IsNullOrEmpty(lastName) ? (object)DBNull.Value : lastName);
+                    cmd.Parameters.AddWithValue("@Gender", gender);
+                    cmd.Parameters.AddWithValue("@DateOfBirth", dateOfBirth);
+                    cmd.Parameters.AddWithValue("@Address", address);
+                    cmd.Parameters.AddWithValue("@PrimaryPhone", phoneNumber);
+                    cmd.Parameters.AddWithValue("@AlternatePhone", string.IsNullOrEmpty(alternateNumber) ? (object)DBNull.Value : alternateNumber);
+                    cmd.Parameters.AddWithValue("@CNIC", cnic);
+                    cmd.Parameters.AddWithValue("@Email", email);
+                    cmd.Parameters.AddWithValue("@Relation", relation);
+                    cmd.ExecuteNonQuery();
                 }
                 catch (Exception e)
                 {

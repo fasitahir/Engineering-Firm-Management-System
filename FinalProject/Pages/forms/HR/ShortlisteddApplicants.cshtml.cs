@@ -17,10 +17,9 @@ namespace FinalProject.Pages.forms.HR
         {
             try
             {
-                SqlCommand cmd = new SqlCommand(@"select ApplicantID, FirstName,Email, PrimaryPhone, LastName 
-                    from Person p join Applicant a on p.PersonID = a.ApplicantID
-                    where a.isRejected = 0 and a.isSelected = 0 and a.isShortlisted = 1
-                    ", con);
+                SqlCommand cmd = new SqlCommand(@"SELECT ApplicantID, FirstName,Email, PrimaryPhone, LastName 
+                    FROM ViewApplicants
+                    where isRejected = 0 and isSelected = 0 and isShortlisted = 1 ", con);
 
 
                 using (SqlDataReader reader = cmd.ExecuteReader())
