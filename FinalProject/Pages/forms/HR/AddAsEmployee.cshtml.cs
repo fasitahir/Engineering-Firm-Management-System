@@ -31,7 +31,7 @@ namespace FinalProject.Pages.forms.HR
             {
 
                 //View is used to load data
-                SqlCommand cmd = new SqlCommand(@"SELECT FirstName, LastName, CNIC, PrimaryPhone, L.Value, PictureName, ApplicantID
+                SqlCommand cmd = new SqlCommand(@"SELECT FirstName, LastName, CNIC, PrimaryPhone, Value, PictureName, ApplicantID
                 FROM ViewApplicants
                 WHERE ApplicantID = @ApplicantID", con);
 

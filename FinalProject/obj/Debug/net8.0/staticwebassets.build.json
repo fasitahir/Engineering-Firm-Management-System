@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "2uHNSl6x/QwOF6r89fHVJDrZGPrCWUjXV6/De9OMZS8=",
+  "Hash": "zX/mONkDPuywkR1i9N2Iqeq8E3qCAVMsRaCln717t90=",
   "Source": "FinalProject",
   "BasePath": "_content/FinalProject",
   "Mode": "Default",
@@ -283,6 +283,25 @@
       "OriginalItemSpec": "wwwroot\\CVs\\20240510013547645.pdf"
     },
     {
+      "Identity": "D:\\FasiTahir\\4th Semester\\DB\\FinalProjectDB\\FinalProject\\wwwroot\\CVs\\20240510193306358.pdf",
+      "SourceId": "FinalProject",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\FasiTahir\\4th Semester\\DB\\FinalProjectDB\\FinalProject\\wwwroot\\",
+      "BasePath": "_content/FinalProject",
+      "RelativePath": "CVs/20240510193306358.pdf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\CVs\\20240510193306358.pdf"
+    },
+    {
       "Identity": "D:\\FasiTahir\\4th Semester\\DB\\FinalProjectDB\\FinalProject\\wwwroot\\favicon.ico",
       "SourceId": "FinalProject",
       "SourceType": "Discovered",
@@ -300,6 +319,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "D:\\FasiTahir\\4th Semester\\DB\\FinalProjectDB\\FinalProject\\wwwroot\\images\\company_logo.png",
+      "SourceId": "FinalProject",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\FasiTahir\\4th Semester\\DB\\FinalProjectDB\\FinalProject\\wwwroot\\",
+      "BasePath": "_content/FinalProject",
+      "RelativePath": "images/company_logo.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\company_logo.png"
     },
     {
       "Identity": "D:\\FasiTahir\\4th Semester\\DB\\FinalProjectDB\\FinalProject\\wwwroot\\js\\site.js",
@@ -1611,6 +1649,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Pictures\\20240510013547631.jpg"
+    },
+    {
+      "Identity": "D:\\FasiTahir\\4th Semester\\DB\\FinalProjectDB\\FinalProject\\wwwroot\\Pictures\\20240510193306358.png",
+      "SourceId": "FinalProject",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\FasiTahir\\4th Semester\\DB\\FinalProjectDB\\FinalProject\\wwwroot\\",
+      "BasePath": "_content/FinalProject",
+      "RelativePath": "Pictures/20240510193306358.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Pictures\\20240510193306358.png"
     }
   ]
 }

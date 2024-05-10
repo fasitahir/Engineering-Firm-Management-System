@@ -45,6 +45,10 @@
       "PackagePath": "staticwebassets\\CVs\\20240510013547645.pdf"
     },
     {
+      "Id": "D:\\FasiTahir\\4th Semester\\DB\\FinalProjectDB\\FinalProject\\wwwroot\\CVs\\20240510193306358.pdf",
+      "PackagePath": "staticwebassets\\CVs\\20240510193306358.pdf"
+    },
+    {
       "Id": "D:\\FasiTahir\\4th Semester\\DB\\FinalProjectDB\\FinalProject\\wwwroot\\Pictures\\20240504111801373.png",
       "PackagePath": "staticwebassets\\Pictures\\20240504111801373.png"
     },
@@ -85,6 +89,10 @@
       "PackagePath": "staticwebassets\\Pictures\\20240510013547631.jpg"
     },
     {
+      "Id": "D:\\FasiTahir\\4th Semester\\DB\\FinalProjectDB\\FinalProject\\wwwroot\\Pictures\\20240510193306358.png",
+      "PackagePath": "staticwebassets\\Pictures\\20240510193306358.png"
+    },
+    {
       "Id": "D:\\FasiTahir\\4th Semester\\DB\\FinalProjectDB\\FinalProject\\wwwroot\\css\\employeeSite.css",
       "PackagePath": "staticwebassets\\css\\employeeSite.css"
     },
@@ -95,6 +103,10 @@
     {
       "Id": "D:\\FasiTahir\\4th Semester\\DB\\FinalProjectDB\\FinalProject\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "D:\\FasiTahir\\4th Semester\\DB\\FinalProjectDB\\FinalProject\\wwwroot\\images\\company_logo.png",
+      "PackagePath": "staticwebassets\\images\\company_logo.png"
     },
     {
       "Id": "D:\\FasiTahir\\4th Semester\\DB\\FinalProjectDB\\FinalProject\\wwwroot\\js\\site.js",
