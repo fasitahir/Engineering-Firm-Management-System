@@ -1,0 +1,306 @@
+﻿@page
+@model FinalProject.Pages.forms.Accountant.OrdersModel
+@{
+	Layout = "/Pages/Shared/_LayoutAccountant.cshtml";
+}
+
+<style>
+	.modal-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	/* CSS styling for the select elements */
+	#driverSelect, #vehicleSelect {
+		height: 36px;
+		flex-grow: 1; /* This will make the select elements take up equal width and maximize the space */
+	}
+</style>
+
+<div class="modal-header">
+	<select id="driverSelect" onchange="displayDriverDetails()">
+		<option value="-1" disabled selected>Select Driver</option> <!-- Default option -->
+		@foreach (var driver in Model.drivers)
+		{
+			<option value="@driver.driverCnic">
+				@($"{driver.driverName} - CNIC: {driver.driverCnic} - License: {driver.licenseNumber}")
+			</option>
+		}
+	</select>
+
+	<div id="driverDetails">
+	</div>
+	<select class="form-select mb-1 me-2" id="vehicleSelect">
+		<option selected disabled>Select Vehicle</option>
+		<!-- Vehicle options will be populated dynamically -->
+	</select>
+	<button type="button" class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#addDriverModal" onclick="addDriver()">Add Driver</button>
+	<button type="button" class="btn btn-primary" onclick="addVehicle()">Add Vehicle</button>
+</div>
+<!-- ----------------------------------------------------------------------------------------------------------------------------------------------------------------->
+
+<div class="container">
+	<h1>Quotations</h1>
+	<div class="row">
+		@foreach (var quotation in Model.quotations)
+		{
+			<div class="col-md-4 mb-3">
+				<div class="card" onclick="showQuotationDetails('@quotation.quotationID','@quotation.clientID' ,'@quotation.clientName', '@quotation.itemID', '@quotation.itemName', '@quotation.itemQuantity', '@quotation.totalAmount', '@quotation.discount', '@quotation.payableAmount')">
+					<div class="card-body">
+						<h5 class="card-title">Quotation ID: @quotation.quotationID</h5>
+						<h6 class="card-subtitle mb-2 text-muted">Client Name: @quotation.clientName</h6>
+					</div>
+				</div>
+			</div>
+		}
+	</div>
+</div>
+
+
+<div class="modal fade" id="quotationModal" tabindex="-1" aria-labelledby="quotationModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="quotationModalLabel">Quotation Details</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<form id="addQuotationForm" method="post">
+				<input id="quotaionIDExtract" type="hidden" asp-for="quotationId" />
+				<input id="dCnicExtract" type="hidden" asp-for="dCnic" />
+				<input id="dVehicleExtract" type="hidden" asp-for="dVehicle" />
+
+				<div>
+					<button type="button" class="btn btn-primary" onclick="addQuotation()">Add</button>
+				</div>
+
+				<input id="itemIdExtract" type="hidden" asp-for="quotation.itemID" />
+				<input id="quotationIdGet" type="hidden" asp-for="quotation.quotationID" />
+				<input id="clientIDExtract" type="hidden" asp-for="quotation.clientID" />
+				<div>
+					<button type="submit" asp-page-handler="addQuotation" class="btn btn-primary">Submit</button>
+				</div>
+			</form>
+
+			<div class="modal-body" id="quotationDetails">
+				<!-- Quotation details will be displayed here -->
+
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<script>
+	function showQuotationDetails(quotationID, clientId, clientName, itemID, itemName, itemQuantity, totalAmount, discount, payableAmount) {
+
+
+
+		var quotationDetails = {
+			quotationID: quotationID,
+			clientName: clientName,
+			itemID: itemID,
+			itemName: itemName, // Add itemName here
+			itemQuantity: itemQuantity, // Add itemQuantity here
+			totalAmount: totalAmount, // Add totalAmount here
+			discount: discount, // Add discount here
+			payableAmount: payableAmount // Add payableAmount here
+			// Add other details as needed
+		};
+
+		// Populate modal with quotation details
+		document.getElementById("quotationDetails").innerHTML = `
+									<h5>Quotation ID: ${quotationDetails.quotationID}</h5>
+									<p>Client Name: ${quotationDetails.clientName}</p>
+									<p>Item Name: ${quotationDetails.itemName}</p>
+									<p>Item Quantity: ${quotationDetails.itemQuantity}</p>
+									<p>Total Amount: ${quotationDetails.totalAmount}</p>
+									<p>Discount: ${quotationDetails.discount}</p>
+									<p>Payable Amount: ${quotationDetails.payableAmount}</p>
+									<!-- Add other details as needed -->
+								`;
+
+		// Show the modal
+		var extractedQuotationId = document.getElementById("quotaionIDExtract");
+		extractedQuotationId.value = quotationID;
+
+		var extractedClientId = document.getElementById("clientIDExtract");
+		var extractedItemId = document.getElementById("itemIdExtract");
+		var quotationIdGet = document.getElementById("quotationIdGet");
+
+		extractedClientId.value = clientId;
+		extractedItemId.value = itemID;
+		quotationIdGet.value = quotationID;
+		console.log(clientId)
+		console.log(itemID)
+		console.log(quotationID)
+		var modal = new bootstrap.Modal(document.getElementById('quotationModal'));
+		modal.show();
+	}
+	function addQuotation() {
+		var dCnic = document.getElementById("driverSelect").value;
+		var dVehicle = document.getElementById("vehicleSelect").value;
+		var dCnicExtract = document.getElementById("dCnicExtract");
+		var dVehicleExtract = document.getElementById("dVehicleExtract");
+		// Check if driver is selected
+		if (dCnic != -1) {
+			dCnicExtract.value = dCnic;
+			dVehicleExtract.value = dVehicle;
+			console.log(dVehicle)
+			console.log(dCnic)
+
+			var quotationDetails = document.getElementById("quotationDetails");
+			var clientIDExtract = document.getElementById("clientIDExtract");
+			var itemIdExtract = document.getElementById("itemIdExtract");
+			var quotationIdGet = document.getElementById("quotationIdGet");
+			console.log(quotationIdGet)
+			// foreach(quotation in @Html.Raw(Json.Serialize(Model.quotation))
+			// {
+			// 	if (quotation.quotationID == quotationId) {
+			// 		console.log(Helo)
+			// 	}
+			// }
+
+
+
+		} else {
+			// Show error message to select a driver first
+			alert("Please select a driver first.");
+		}
+	}
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="modal fade" id="addDriverModal" tabindex="-1" aria-labelledby="addDriverModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="addDriverModalLabel">Add Driver</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<form id="addDriverForm" method="post">
+					<div class="mb-3">
+						<label for="DriverNameInput" class="form-label">Driver Name</label>
+						<input type="text" class="form-control" id="DriverNameInput" asp-for="driverName" placeholder="Enter driver name" required>
+					</div>
+					<div class="mb-3">
+						<label for="driverCnicInput" class="form-label">Driver CNIC</label>
+						<input type="text" class="form-control" id="driverCnicInput" asp-for="driverCnic" placeholder="Enter CNIC" required>
+					</div>
+					<div class="mb-3">
+						<label for="licenseNumberInput" class="form-label">License Number</label>
+						<input type="text" class="form-control" id="licenseNumberInput" asp-for="licenseNumber" placeholder="Enter license number" required>
+					</div>
+					<div class="mb-3">
+						<label for="licenseExpiryDateInput" class="form-label">License Expiry Date</label>
+						<input type="date" class="form-control" id="licenseExpiryDateInput" asp-for="expiryDate" placeholder="Enter expiry date" required>
+						<span asp-validation-for="expiryDate" class="text-danger"></span>
+					</div>
+					<div class="modal-footer">
+						<button type="submit" asp-page-handler="AddDriver" class="btn btn-primary">Save changes</button>
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+					</div>
+				</form>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+
+<div class="modal fade" id="addVehicleModal" tabindex="-1" aria-labelledby="addVehicleModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="addVehicleModalLabel">Add Vehicle</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<form id="addVehicleForm" method="post">
+					<input id="cnicDriverField" type="hidden" asp-for="cnicDriver" />
+					<div class="mb-3">
+						<label for="VehicleTypeSelect" class="form-label">Vehicle Type</label>
+						<select class="form-control" id="VehicleTypeSelect" asp-for="vehicleType" required>
+							<option value="" disabled selected>Select Vehicle</option>
+							<option value="Truck">Truck</option>
+							<option value="Van">Van</option>
+							<option value="Rickshaw">Rickshaw</option>
+							<option value="PickUp">PickUp</option>
+							<option value="Car">Car</option>
+						</select>
+					</div>
+					<div class="mb-3">
+						<label for="plateNumberInput" class="form-label">Plate Number</label>
+						<input type="text" class="form-control" id="plateNumberInput" asp-for="plateNumber" placeholder="Enter plate number" required>
+					</div>
+					<div class="modal-footer">
+						<button type="submit" asp-page-handler="AddVehicle" class="btn btn-primary">Save changes</button>
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+					</div>
+				</form>
+			</div>
+
+
+		</div>
+	</div>
+</div>
+
+@section Scripts {
+
+	<script>
+		function addDriver() {
+			const modal = new bootstrap.Modal(document.getElementById("addDriverModal"));
+			modal.show();
+		}
+	</script>
+	<script>
+		function addVehicle() {
+			var dCnic = document.getElementById("driverSelect").value;
+			const modal = new bootstrap.Modal(document.getElementById("addVehicleModal"));
+			var cnicDriverField = document.getElementById("cnicDriverField");
+			console.log(dCnic)
+			// Check if driver is selected
+			if (dCnic != -1) {
+				cnicDriverField.value = dCnic;
+				modal.show();
+			} else {
+				// Show error message to select a driver first
+				alert("Please select a driver first.");
+			}
+		}
+	</script>
+
+	<script>
+		function displayDriverDetails() {
+			var test = @Html.Raw(Json.Serialize(Model.vehicles));
+			var dCnic = document.getElementById("driverSelect").value;
+			var vehicleDetails = test.filter(vehicle => vehicle.driver.driverCnic === dCnic);
+			console.log("Found Vehicle Details:", vehicleDetails);
+
+			var vehicleSelect = document.getElementById("vehicleSelect");
+			vehicleSelect.innerHTML = ''; // Clear existing options
+
+			// Create and append options for each vehicle
+			vehicleDetails.forEach(vehicle => {
+				var option = document.createElement("option");
+				option.value = vehicle.vehicleId; // Assuming vehicleId is the value you want to set
+				option.text = `${vehicle.vehicleTypeName} - ${vehicle.plateNumber}`;
+				vehicleSelect.appendChild(option);
+			});
+		}
+	</script>
+
+
+}

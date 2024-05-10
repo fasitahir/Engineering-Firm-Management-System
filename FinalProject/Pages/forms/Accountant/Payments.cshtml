@@ -1,0 +1,171 @@
+﻿@page
+@model FinalProject.Pages.forms.Accountant.PaymentsModel
+@{
+    Layout = "/Pages/Shared/_LayoutAccountant.cshtml";
+}
+<div class="container">
+    <header class="row bg-light py-4">
+        <div class="col-12 text-center">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#paymentModal">Make Payment</button>
+            <!-- Dropdown for selecting salary status -->
+            <div class="dropdown d-inline-block mx-2">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="salaryStatusDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    Salary Status
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="salaryStatusDropdown">
+                    <li><a class="dropdown-item" href="#" data-status="all">All</a></li>
+                    <li><a class="dropdown-item" href="#" data-status="paid">Paid</a></li>
+                    <li><a class="dropdown-item" href="#" data-status="unpaid">Unpaid</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <table class="table">
+        <thead>
+            <tr>
+                <!-- <th>#</th> --> <!-- Commented out since it's not used -->
+                <th>EmployeeNo</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Paid Date</th>
+                <th>Base Salary</th>
+                <th>Paid Amount</th>
+                <th>Is Paid</th>
+            </tr>
+        </thead>
+        <tbody id="employeeTableBody">
+            @foreach (var employee in Model.employees)
+            {
+                <tr>
+                    <td>@employee.EmployeeNo</td>
+                    <td>@employee.FirstName</td>
+                    <td>@employee.Email</td>
+                    <td>@employee.StartDate.ToString("yyyy-MM-dd")</td>
+                    <td><span class="math-inline">@employee.BaseSalary.ToString("0.00")</span></td>
+                    <td>@employee.PaidAmount</td>
+                    <td>@(employee.IsPaid ? "Paid" : "Unpaid")</td>
+
+
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
+
+<div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="paymentModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="paymentModalLabel">Make Payment</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="makePaymentForm" method="post">
+                    <div class="mb-3">
+                        <label for="employeeSelect" class="form-label">Select Employee</label>
+                        <select class="form-select" id="employeeSelect" onchange="displayUnpaidEmployees()">
+                            <option value="-1" disabled selected>Select Employee</option> <!-- Default option -->
+                            @foreach (var employee in Model.employees_unpaid)
+                            {
+                                <option value="@employee.EmployeeNo">
+                                    @($"{employee.EmployeeNo}")
+                                </option>
+                            }
+                        </select>
+                        <input type="hidden" class="form-control" id="employeeNoInput" asp-for="employeeNoExtract">
+
+
+                    </div>
+                    <div class="mb-3">
+                        <label for="amountInput" class="form-label">Amount</label>
+                        <input type="text" pattern="[0-9]*" inputmode="numeric" class="form-control" id="amountInput" placeholder="Enter amount" asp-for="amount">
+                    </div>
+                    @* <div class="mb-3">
+                    <label for="yearInput" class="form-label">Year</label>
+                    <input type="text" pattern="[0-9]*" inputmode="numeric" class="form-control" id="yearInput" placeholder="Enter year" asp-for="year">
+                    </div>
+                    <div class="mb-3">
+                    <label for="monthSelect" class="form-label">Select Month</label>
+                    <select class="form-select" id="monthSelect">
+                    <option selected disabled>Select Month</option>
+                    <option value="January">January</option>
+                    <option value="February">February</option>
+                    <option value="March">March</option>
+                    <option value="April">April</option>
+                    <option value="May">May</option>
+                    <option value="June">June</option>
+                    <option value="July">July</option>
+                    <option value="August">August</option>
+                    <option value="September">September</option>
+                    <option value="October">October</option>
+                    <option value="November">November</option>
+                    <option value="December">December</option>
+                    </select>
+                    </div> *@
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Make Payment</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Edit Modal -->
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editModalLabel">Edit Record</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="mb-3">
+                        <label for="employeeNameInput" class="form-label">Employee Name</label>
+                        <input type="text" class="form-control" id="employeeNameInput">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="amountInput" class="form-label">Amount</label>
+                        <input type="text" pattern="[0-9]*" inputmode="numeric" class="form-control" id="amountInput">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="saveChanges()">Save Changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function editRecord() {
+        // Code to populate modal with data based on the record being edited
+        const modal = new bootstrap.Modal(document.getElementById("editModal"));
+        modal.show();
+    }
+
+    function saveChanges() {
+        // Code to save changes from the modal
+        const modal = new bootstrap.Modal(document.getElementById("editModal"));
+        modal.hide();
+    }
+</script>
+<script>
+    function displayUnpaidEmployees() {
+        // var test = @Html.Raw(Json.Serialize(Model.employees_unpaid));
+
+
+        var employeeNo = document.getElementById("employeeSelect").value;
+        // alert(employeeNo)
+        var employeeNoInput = document.getElementById("employeeNoInput");
+        employeeNoInput.value = employeeNo;
+    }
+</script>

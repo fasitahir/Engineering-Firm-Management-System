@@ -108,7 +108,7 @@ namespace FinalProject.Pages.forms.HR
                 if (double.TryParse(Request.Form["baseSalary"], out double baseSalary))
                 {
                     // Set the value to the employee's salary
-                    employee.Salary = baseSalary;
+                    employee.BaseSalary = baseSalary;
                 }
                 else
                 {
@@ -116,7 +116,7 @@ namespace FinalProject.Pages.forms.HR
                     TempData["ErrorMessage"] = "Invalid base salary value.";
                 }
                 employeeNo = "";
-                Salary = employee.Salary;
+                Salary = employee.BaseSalary;
 
                 if (designation == 3)
                 {

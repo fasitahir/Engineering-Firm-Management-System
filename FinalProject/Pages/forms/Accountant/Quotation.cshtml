@@ -1,0 +1,147 @@
+﻿@page
+@model FinalProject.Pages.forms.Accountant.QuotationModel
+@{
+    Layout = "/Pages/Shared/_LayoutAccountant.cshtml";
+}
+<!-- Client Selection Dropdown -->
+<div class="modal-header">
+    <select class="form-select mb-1 me-2" id="clientSelect">
+        <option selected disabled>Select Client</option>
+        <!-- Add options dynamically using JavaScript -->
+    </select>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addClientModal" onclick="addClient()">Add Client</button>
+</div>
+
+
+<!-- Item Table -->
+<form method="post" asp-page-handler="AddItem" id="addStockForm">
+    <table class="table mb-3">
+        <thead>
+            <tr>
+                <th>Item Name</th>
+                <th>Available Quantity</th>
+                <th>Description</th>
+                <th>Measurement Unit</th>
+                <th>Sale Price</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var items in Model.items)
+            {
+                <tr>
+                    <!-- Assuming GetEmployees() is a static method in EmployeeService -->
+                    @* <td>@(EmployeeService.GetEmployees().IndexOf(employee) + 1)</td> *@
+                    <td>@items.ItemName</td>
+                    <td>@items.AvailableQuantity</td>
+                    <td>@items.Description</td>
+                    <td>@items.MeasurementUnit</td>
+                    <td><span class="math-inline">@items.SalePrice</span></td>
+
+                    <td>
+                        <input type="hidden" value="@items.ItemName" asp-for="ItemNameExtract" />
+
+                        <button type="submit" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#editModal">Add</button>
+                        <button type="button" class="btn btn-danger mb-3" id="revertBtn" disabled>Revert</button>
+                    </td>
+
+                    @* onclick="addItem(' @items.ItemName')" *@
+
+                </tr>
+
+            }
+        </tbody>
+    </table>
+</form>
+
+<!-- Added Items Table -->
+@* <table class="table mb-3" id="addedItemsTable">
+    <thead>
+        <tr>
+            <th>Item ID</th>
+            <th>Item Name</th>
+            <th>Quantity</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Added items will appear here -->
+    </tbody>
+</table> *@
+
+<!-- Revert Button (Initially disabled) -->
+<!-- Add Quotation Button -->
+<button type="button" class="btn btn-primary" id="addQuotationBtn" onclick="addQuotation()">Add Quotation</button>
+
+
+
+<form method="post" asp-page-handler="AddItem" id="addStockForm">
+    <!-- Table to display added items -->
+    <h2 class="mb-3">Added Items</h2>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Item Name</th>
+                    <th>Description</th>
+                    <th>Sales Price</th>
+                    <th>Measurement Unit</th>
+                    <th>Quantity</th>
+                    <th>Action</th>
+
+                </tr>
+            </thead>
+            <tbody id="addedItemsTableBody">
+                @foreach (var item in QuotationModel.addedItems)
+                {
+                    <tr>
+                        <td>@item.ItemName</td>
+                        <td>@item.Description</td>
+                        <td>@item.SalePrice</td>
+                        <td>@item.MeasurementUnit</td>
+                        <td>@item.AvailableQuantity</td>
+                        <td>
+                            <button type="submit" formmethod="post" asp-page-handler="ItemRemove" asp-route-Name="@item.ItemName" class="btn btn-danger btn-sm">Delete</button>
+
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+</form>
+
+<script>
+    // Assuming Model.clients is an array of objects containing client data
+    var clients = @Html.Raw(Json.Serialize(Model.clients));
+
+    // Function to populate the dropdown
+    function populateDropdown() {
+        var dropdown = document.getElementById("clientSelect");
+
+        // Clear existing options
+        dropdown.innerHTML = "";
+
+        // Add default option
+        var defaultOption = document.createElement("option");
+        defaultOption.text = "Select Client";
+        defaultOption.disabled = true;
+        defaultOption.selected = true;
+        dropdown.add(defaultOption);
+
+        // Add options for each client
+        clients.forEach(function (client) {
+            var option = document.createElement("option");
+            option.value = client.clientDetail; // Assuming clientDetail is the value to be sent when selected
+            option.text = client.clientDetail;
+            dropdown.add(option);
+        });
+    }
+
+    // Call the function to populate the dropdown when the page loads
+    window.onload = function () {
+        populateDropdown();
+    };
+</script>
+

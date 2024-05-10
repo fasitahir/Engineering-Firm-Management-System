@@ -89,7 +89,7 @@ namespace FinalProject.Pages
             }
             else if(designation == 4)
             {
-                return RedirectToPage("/forms/Accountant", new { EmployeeID });
+                return RedirectToPage("/forms/Accountant/Accountant", new { EmployeeID });
             }
             else if(designation == 5)
             {

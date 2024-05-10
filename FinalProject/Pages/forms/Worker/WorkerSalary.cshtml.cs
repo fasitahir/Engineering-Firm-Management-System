@@ -22,7 +22,7 @@ namespace FinalProject.Pages.forms.Worker
                     while(reader.Read())
                     {
                         Employee e = new Employee();
-                        e.Salary = reader.GetDouble(0);
+                        e.BaseSalary = reader.GetDouble(0);
                         e.PaidDate = reader.GetDateTime(1);
                         e.IsPaid = reader.GetBoolean(2);
 

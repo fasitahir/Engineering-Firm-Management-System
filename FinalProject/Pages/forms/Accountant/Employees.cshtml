@@ -1,0 +1,99 @@
+﻿@page
+@model FinalProject.Pages.forms.Accountant.EmployeesModel
+@{
+    Layout = "/Pages/Shared/_LayoutAccountant.cshtml";
+}
+
+<!-- Bootstrap CSS (ensure this is properly linked in your HTML) -->
+<link href="path/to/bootstrap.min.css" rel="stylesheet">
+
+<!-- Your HTML content -->
+<!-- Bootstrap JS (ensure this is properly linked before your custom JS) -->
+<script src="path/to/bootstrap.bundle.min.js"></script>
+<script src="path/to/your-custom-script.js"></script>
+
+
+<h1>Employee List</h1>
+
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+                <!-- <th>#</th> --> <!-- Commented out since it's not used -->
+                <th>EmployeeNo</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Start Date</th>
+                <th>Base Salary</th>
+                <th>Paid Amount</th>
+                <th>Is Paid</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var employee in Model.employees)
+            {
+                <tr>
+                    <td>@employee.EmployeeNo</td>
+                    <td>@employee.FirstName</td>
+                    <td>@employee.Email</td>
+                    <td>@employee.StartDate.ToString("yyyy-MM-dd")</td>
+                    <td><span class="math-inline">@employee.BaseSalary.ToString("0.00")</span></td>
+                    <td>@employee.PaidAmount</td>
+                    <td>@(employee.IsPaid ? "Paid" : "Unpaid")</td>
+
+                    <td>
+                        <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#editModal" onclick="editRecord('@employee.EmployeeNo', '@employee.FirstName', '@employee.BaseSalary')">Update Salary</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editModalLabel">Edit Base Salary</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="editForm" method="post" asp-page-handler="EditSalary">
+                    <!-- Added asp-page-handler="EditSalary" -->
+                    <div class="form-group">
+                        <input type="hidden" id="employeeNoPlaceholder" asp-for="backend_employeeID" />
+
+                        <label for="newBaseSalary">New Base Salary:</label>
+                        <input type="text" pattern="[0-9]*" class="form-control" inputmode="numeric" asp-for="newSalary" id="newBaseSalary">
+                        <button type="submit" class="btn btn-primary" id="saveChangesBtn">Save Changes</button>
+                    </div>
+                    <input type="hidden" id="editEmployeeID" name="editEmployeeID">
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+</script>
+<script>
+
+    function editRecord(employeeNo, FirstName, BaseSalary) {
+        // Display employee ID in the modal
+        backend_employeeID = employeeNo;
+        document.getElementById("employeeNoPlaceholder").value = employeeNo;
+        // Show the modal
+        const modal = new bootstrap.Modal(document.getElementById("editModal"));
+        modal.show();
+    }
+</script>
+
+

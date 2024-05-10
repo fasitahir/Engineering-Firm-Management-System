@@ -22,7 +22,7 @@
             @foreach (var e in Model.employees)
             {
                 <tr>
-                    <td>@e.Salary</td>
+                    <td>@e.BaseSalary</td>
                     <td>@e.PaidDate.ToShortDateString()</td>
                     <td>
                         @if (e.IsPaid)
