@@ -91,7 +91,7 @@ namespace FinalProject.Pages
             {
                 return RedirectToPage("/forms/Accountant/Accountant", new { EmployeeID });
             }
-            else if(designation == 5)
+            else if(designation == 6)
             {
                 return RedirectToPage("/forms/InventoryManager/IMHome", new { EmployeeID });
             }

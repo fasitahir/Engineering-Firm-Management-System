@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\FasiTahir\\4th Semester\\DB\\FinalProjectDB\\FinalProject\\FinalProject.csproj": {}
+    "D:\\FasiTahir\\4th Semester\\DB\\Projects\\Final Project\\FinalProjectDB\\FinalProject\\FinalProject.csproj": {}
   },
   "projects": {
-    "D:\\FasiTahir\\4th Semester\\DB\\FinalProjectDB\\FinalProject\\FinalProject.csproj": {
+    "D:\\FasiTahir\\4th Semester\\DB\\Projects\\Final Project\\FinalProjectDB\\FinalProject\\FinalProject.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\FasiTahir\\4th Semester\\DB\\FinalProjectDB\\FinalProject\\FinalProject.csproj",
+        "projectUniqueName": "D:\\FasiTahir\\4th Semester\\DB\\Projects\\Final Project\\FinalProjectDB\\FinalProject\\FinalProject.csproj",
         "projectName": "FinalProject",
-        "projectPath": "D:\\FasiTahir\\4th Semester\\DB\\FinalProjectDB\\FinalProject\\FinalProject.csproj",
+        "projectPath": "D:\\FasiTahir\\4th Semester\\DB\\Projects\\Final Project\\FinalProjectDB\\FinalProject\\FinalProject.csproj",
         "packagesPath": "C:\\Users\\Fasi Tahir\\.nuget\\packages\\",
-        "outputPath": "D:\\FasiTahir\\4th Semester\\DB\\FinalProjectDB\\FinalProject\\obj\\",
+        "outputPath": "D:\\FasiTahir\\4th Semester\\DB\\Projects\\Final Project\\FinalProjectDB\\FinalProject\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Fasi Tahir\\AppData\\Roaming\\NuGet\\NuGet.Config",

@@ -57,29 +57,37 @@ namespace FinalProject.Pages.forms.Worker
                     Name = reader.GetString(1);
                     employeeNumber = reader.GetString(2);
                     StartDate = reader.GetDateTime(3);
-                    if(EndDate is null)
+                    if (!reader.IsDBNull(4))
                     {
-                        EndDate = DateTime.MinValue;
+                        EndDate = reader.GetDateTime(4);
                     }
                     else
                     {
-
-                        EndDate = reader.GetDateTime(4);
+                        EndDate = null; // or DateTime.MinValue, depending on your preference
                     }
+
+                    // Similarly, handle other nullable fields
+                    if (!reader.IsDBNull(8))
+                    {
+                        PaidAmount = reader.GetDecimal(8);
+                    }
+                    else
+                    {
+                        PaidAmount = null; // or 0, depending on your preference
+                    }
+
+                    if (!reader.IsDBNull(9))
+                    {
+                        PaidDate = reader.GetDateTime(9);
+                    }
+                    else
+                    {
+                        PaidDate = null; // or DateTime.MinValue, depending on your preference
+                    }
+
                     salary = reader.GetDecimal(5);
                     designation = reader.GetString(6);
                     baseSalary = reader.GetDecimal(7);
-                    PaidAmount = reader.GetDecimal(8);
-                    
-                    if (PaidDate is null)
-                    {
-                        PaidDate = DateTime.MinValue;
-                    }
-                    else
-                    {
-
-                        PaidDate = reader.GetDateTime(4);
-                    }
                 }
             }
         }

@@ -141,14 +141,13 @@
         var costPrice = document.getElementById("costPrice").value;
         var quantity = document.getElementById("quantity").value;
 
-        if (!itemName.trim() || !description.trim() || !salesPrice.trim() || !measurementUnit.trim() || !costPrice.trim() || !quantity.trim()) {
             // Display Bootstrap alert
             var errorMessage = document.createElement("div");
             errorMessage.className = "alert alert-danger";
             errorMessage.innerHTML = "Fill all text boxes!";
             document.getElementById("errorMessageContainer").appendChild(errorMessage);
             return;
-        }
+        
 
         // Create new table row
         var newRow = document.createElement("tr");

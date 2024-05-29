@@ -22,22 +22,22 @@ namespace FinalProject.Pages.forms.InventoryManager
             if (items.Count > 0)
             {
                 // Begin transaction
-                using (SqlTransaction transaction = con.BeginTransaction())
-                {
+                /*using (SqlTransaction transaction = con.BeginTransaction())
+                {*/
                     try
                     {
-                        SqlCommand getStockId = new SqlCommand(@"SELECT ISNULL(MAX(StockID),0)+1 FROM Stock", con, transaction);
+                        SqlCommand getStockId = new SqlCommand(@"SELECT ISNULL(MAX(StockID),0)+1 FROM Stock", con);
                         int StockId = (int)getStockId.ExecuteScalar();
 
                         foreach (var item in items)
                         {
-                            SqlCommand check = new SqlCommand(@"SELECT COUNT(*) FROM Item I WHERE I.ItemName Like @ItemName", con, transaction);
+                            SqlCommand check = new SqlCommand(@"SELECT COUNT(*) FROM Item I WHERE I.ItemName Like @ItemName", con);
                             check.Parameters.AddWithValue("@ItemName", item.ItemName);
                             int count = (int)check.ExecuteScalar();
                             SqlCommand cmd;
                             if (count > 0)
                             {
-                                SqlCommand getId = new SqlCommand(@"SELECT ItemID FROM Item I WHERE I.ItemName LIKE @ItemName", con, transaction);
+                                SqlCommand getId = new SqlCommand(@"SELECT ItemID FROM Item I WHERE I.ItemName LIKE @ItemName", con);
                                 getId.Parameters.AddWithValue("@ItemName", item.ItemName);
                                 int itemId = (int)getId.ExecuteScalar();
 
@@ -45,7 +45,7 @@ namespace FinalProject.Pages.forms.InventoryManager
                                     SET AvailableQuantity = AvailableQuantity + @AvailableQuantity, SalePrice = @SalePrice
                                     WHERE ItemID = @ItemID;
                                     INSERT INTO Stock
-                                    VALUES (@StockID, @ItemID, null, null, @ArrivalDate, @CostPrice, @CurrentStockQuantity, @InitialQuantity)", con, transaction);
+                                    VALUES (@StockID, @ItemID, null, null, @ArrivalDate, @CostPrice, @CurrentStockQuantity, @InitialQuantity)", con);
                                 cmd.Parameters.AddWithValue("@ItemID", itemId);
                             }
                             else
@@ -53,7 +53,7 @@ namespace FinalProject.Pages.forms.InventoryManager
                                 cmd = new SqlCommand(@"INSERT INTO Item 
                                     Values (@ItemName, @AvailableQuantity, @Description, @MeasurementUnit, @SalePrice, null, null)
                                     INSERT INTO Stock
-                                    VALUES (@StockID, (SELECT MAX(ItemID) FROM Item), null, null, @ArrivalDate, @CostPrice, @CurrentStockQuantity, @InitialQuantity)", con, transaction);
+                                    VALUES (@StockID, (SELECT MAX(ItemID) FROM Item), null, null, @ArrivalDate, @CostPrice, @CurrentStockQuantity, @InitialQuantity)", con);
 
                             }
 
@@ -78,7 +78,7 @@ namespace FinalProject.Pages.forms.InventoryManager
                         }
 
                         // Commit the transaction
-                        transaction.Commit();
+                        //transaction.Commit();
 
                         // Clear items list after successful insertion
                         items.Clear();
@@ -88,13 +88,13 @@ namespace FinalProject.Pages.forms.InventoryManager
                     catch (Exception ex)
                     {
                         // Rollback the transaction if an exception occurs
-                        transaction.Rollback();
+                        //transaction.Rollback();
                         // Log or handle the exception
                         Console.WriteLine("Exception occurred: " + ex.Message);
                         return RedirectToPage("/Error");
                     }
                 }
-            }
+            //}
             else
             {
                 return RedirectToPage();
@@ -114,14 +114,10 @@ namespace FinalProject.Pages.forms.InventoryManager
             double sale = item.SalePrice;
             DateTime arrival = item.ArrivalDate;
 
-            if (!string.IsNullOrEmpty(name) && !string.IsNullOrEmpty(unit) && cost != 0 && quantity != 0 && sale != 0 && arrival != DateTime.MinValue)
-            {
+            
                 items.Add(item);
-            }
-            else
-            {
-                Console.WriteLine("Please Fill the required boxes");
-            }
+            
+            
 
         }
 

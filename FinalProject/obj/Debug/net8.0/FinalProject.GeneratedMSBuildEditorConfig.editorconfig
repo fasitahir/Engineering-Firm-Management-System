@@ -9,135 +9,135 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = FinalProject
 build_property.RootNamespace = FinalProject
-build_property.ProjectDir = D:\FasiTahir\4th Semester\DB\FinalProjectDB\FinalProject\
+build_property.ProjectDir = D:\FasiTahir\4th Semester\DB\Projects\Final Project\FinalProjectDB\FinalProject\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = D:\FasiTahir\4th Semester\DB\FinalProjectDB\FinalProject
+build_property.MSBuildProjectDirectory = D:\FasiTahir\4th Semester\DB\Projects\Final Project\FinalProjectDB\FinalProject
 build_property._RazorSourceGeneratorDebug = 
 
-[D:/FasiTahir/4th Semester/DB/FinalProjectDB/FinalProject/Pages/Error.cshtml]
+[D:/FasiTahir/4th Semester/DB/Projects/Final Project/FinalProjectDB/FinalProject/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/FasiTahir/4th Semester/DB/FinalProjectDB/FinalProject/Pages/forms/aboutUs.cshtml]
+[D:/FasiTahir/4th Semester/DB/Projects/Final Project/FinalProjectDB/FinalProject/Pages/forms/aboutUs.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcZm9ybXNcYWJvdXRVcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/FasiTahir/4th Semester/DB/FinalProjectDB/FinalProject/Pages/forms/Accountant/Accountant.cshtml]
+[D:/FasiTahir/4th Semester/DB/Projects/Final Project/FinalProjectDB/FinalProject/Pages/forms/Accountant/Accountant.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcZm9ybXNcQWNjb3VudGFudFxBY2NvdW50YW50LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/FasiTahir/4th Semester/DB/FinalProjectDB/FinalProject/Pages/forms/Accountant/Employees.cshtml]
+[D:/FasiTahir/4th Semester/DB/Projects/Final Project/FinalProjectDB/FinalProject/Pages/forms/Accountant/Employees.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcZm9ybXNcQWNjb3VudGFudFxFbXBsb3llZXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/FasiTahir/4th Semester/DB/FinalProjectDB/FinalProject/Pages/forms/Accountant/Orders.cshtml]
+[D:/FasiTahir/4th Semester/DB/Projects/Final Project/FinalProjectDB/FinalProject/Pages/forms/Accountant/Orders.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcZm9ybXNcQWNjb3VudGFudFxPcmRlcnMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/FasiTahir/4th Semester/DB/FinalProjectDB/FinalProject/Pages/forms/Accountant/Payments.cshtml]
+[D:/FasiTahir/4th Semester/DB/Projects/Final Project/FinalProjectDB/FinalProject/Pages/forms/Accountant/Payments.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcZm9ybXNcQWNjb3VudGFudFxQYXltZW50cy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/FasiTahir/4th Semester/DB/FinalProjectDB/FinalProject/Pages/forms/Accountant/Quotation.cshtml]
+[D:/FasiTahir/4th Semester/DB/Projects/Final Project/FinalProjectDB/FinalProject/Pages/forms/Accountant/Quotation.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcZm9ybXNcQWNjb3VudGFudFxRdW90YXRpb24uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/FasiTahir/4th Semester/DB/FinalProjectDB/FinalProject/Pages/forms/ApplyNow.cshtml]
+[D:/FasiTahir/4th Semester/DB/Projects/Final Project/FinalProjectDB/FinalProject/Pages/forms/ApplyNow.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcZm9ybXNcQXBwbHlOb3cuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/FasiTahir/4th Semester/DB/FinalProjectDB/FinalProject/Pages/forms/HR/AddAsEmployee.cshtml]
+[D:/FasiTahir/4th Semester/DB/Projects/Final Project/FinalProjectDB/FinalProject/Pages/forms/HR/AddAsEmployee.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcZm9ybXNcSFJcQWRkQXNFbXBsb3llZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/FasiTahir/4th Semester/DB/FinalProjectDB/FinalProject/Pages/forms/HR/EditEmployee.cshtml]
+[D:/FasiTahir/4th Semester/DB/Projects/Final Project/FinalProjectDB/FinalProject/Pages/forms/HR/EditEmployee.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcZm9ybXNcSFJcRWRpdEVtcGxveWVlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/FasiTahir/4th Semester/DB/FinalProjectDB/FinalProject/Pages/forms/HR/HRHome.cshtml]
+[D:/FasiTahir/4th Semester/DB/Projects/Final Project/FinalProjectDB/FinalProject/Pages/forms/HR/HRHome.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcZm9ybXNcSFJcSFJIb21lLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/FasiTahir/4th Semester/DB/FinalProjectDB/FinalProject/Pages/forms/HR/ManageEmployee.cshtml]
+[D:/FasiTahir/4th Semester/DB/Projects/Final Project/FinalProjectDB/FinalProject/Pages/forms/HR/ManageEmployee.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcZm9ybXNcSFJcTWFuYWdlRW1wbG95ZWUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/FasiTahir/4th Semester/DB/FinalProjectDB/FinalProject/Pages/forms/HR/shortlist.cshtml]
+[D:/FasiTahir/4th Semester/DB/Projects/Final Project/FinalProjectDB/FinalProject/Pages/forms/HR/shortlist.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcZm9ybXNcSFJcc2hvcnRsaXN0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/FasiTahir/4th Semester/DB/FinalProjectDB/FinalProject/Pages/forms/HR/ShortlisteddApplicants.cshtml]
+[D:/FasiTahir/4th Semester/DB/Projects/Final Project/FinalProjectDB/FinalProject/Pages/forms/HR/ShortlisteddApplicants.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcZm9ybXNcSFJcU2hvcnRsaXN0ZWRkQXBwbGljYW50cy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/FasiTahir/4th Semester/DB/FinalProjectDB/FinalProject/Pages/forms/InventoryManager/addStock.cshtml]
+[D:/FasiTahir/4th Semester/DB/Projects/Final Project/FinalProjectDB/FinalProject/Pages/forms/InventoryManager/addStock.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcZm9ybXNcSW52ZW50b3J5TWFuYWdlclxhZGRTdG9jay5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/FasiTahir/4th Semester/DB/FinalProjectDB/FinalProject/Pages/forms/InventoryManager/EditStock.cshtml]
+[D:/FasiTahir/4th Semester/DB/Projects/Final Project/FinalProjectDB/FinalProject/Pages/forms/InventoryManager/EditStock.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcZm9ybXNcSW52ZW50b3J5TWFuYWdlclxFZGl0U3RvY2suY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/FasiTahir/4th Semester/DB/FinalProjectDB/FinalProject/Pages/forms/InventoryManager/IMHome.cshtml]
+[D:/FasiTahir/4th Semester/DB/Projects/Final Project/FinalProjectDB/FinalProject/Pages/forms/InventoryManager/IMHome.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcZm9ybXNcSW52ZW50b3J5TWFuYWdlclxJTUhvbWUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/FasiTahir/4th Semester/DB/FinalProjectDB/FinalProject/Pages/forms/InventoryManager/manageInventory.cshtml]
+[D:/FasiTahir/4th Semester/DB/Projects/Final Project/FinalProjectDB/FinalProject/Pages/forms/InventoryManager/manageInventory.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcZm9ybXNcSW52ZW50b3J5TWFuYWdlclxtYW5hZ2VJbnZlbnRvcnkuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/FasiTahir/4th Semester/DB/FinalProjectDB/FinalProject/Pages/forms/Worker/WorkerHome.cshtml]
+[D:/FasiTahir/4th Semester/DB/Projects/Final Project/FinalProjectDB/FinalProject/Pages/forms/Worker/WorkerHome.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcZm9ybXNcV29ya2VyXFdvcmtlckhvbWUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/FasiTahir/4th Semester/DB/FinalProjectDB/FinalProject/Pages/forms/Worker/WorkerSalary.cshtml]
+[D:/FasiTahir/4th Semester/DB/Projects/Final Project/FinalProjectDB/FinalProject/Pages/forms/Worker/WorkerSalary.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcZm9ybXNcV29ya2VyXFdvcmtlclNhbGFyeS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/FasiTahir/4th Semester/DB/FinalProjectDB/FinalProject/Pages/Index.cshtml]
+[D:/FasiTahir/4th Semester/DB/Projects/Final Project/FinalProjectDB/FinalProject/Pages/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/FasiTahir/4th Semester/DB/FinalProjectDB/FinalProject/Pages/Privacy.cshtml]
+[D:/FasiTahir/4th Semester/DB/Projects/Final Project/FinalProjectDB/FinalProject/Pages/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJpdmFjeS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/FasiTahir/4th Semester/DB/FinalProjectDB/FinalProject/Pages/Shared/_LayoutAccountant.cshtml]
+[D:/FasiTahir/4th Semester/DB/Projects/Final Project/FinalProjectDB/FinalProject/Pages/Shared/_LayoutAccountant.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXRBY2NvdW50YW50LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/FasiTahir/4th Semester/DB/FinalProjectDB/FinalProject/Pages/Shared/_LayoutEmployee.cshtml]
+[D:/FasiTahir/4th Semester/DB/Projects/Final Project/FinalProjectDB/FinalProject/Pages/Shared/_LayoutEmployee.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXRFbXBsb3llZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/FasiTahir/4th Semester/DB/FinalProjectDB/FinalProject/Pages/Shared/_LayoutForHR.cshtml]
+[D:/FasiTahir/4th Semester/DB/Projects/Final Project/FinalProjectDB/FinalProject/Pages/Shared/_LayoutForHR.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXRGb3JIUi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/FasiTahir/4th Semester/DB/FinalProjectDB/FinalProject/Pages/Shared/_LayoutForInventoryManager.cshtml]
+[D:/FasiTahir/4th Semester/DB/Projects/Final Project/FinalProjectDB/FinalProject/Pages/Shared/_LayoutForInventoryManager.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXRGb3JJbnZlbnRvcnlNYW5hZ2VyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/FasiTahir/4th Semester/DB/FinalProjectDB/FinalProject/Pages/Shared/_LayoutInventoryManager.cshtml]
+[D:/FasiTahir/4th Semester/DB/Projects/Final Project/FinalProjectDB/FinalProject/Pages/Shared/_LayoutInventoryManager.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXRJbnZlbnRvcnlNYW5hZ2VyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/FasiTahir/4th Semester/DB/FinalProjectDB/FinalProject/Pages/Shared/_ValidationScriptsPartial.cshtml]
+[D:/FasiTahir/4th Semester/DB/Projects/Final Project/FinalProjectDB/FinalProject/Pages/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/FasiTahir/4th Semester/DB/FinalProjectDB/FinalProject/Pages/_ViewImports.cshtml]
+[D:/FasiTahir/4th Semester/DB/Projects/Final Project/FinalProjectDB/FinalProject/Pages/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/FasiTahir/4th Semester/DB/FinalProjectDB/FinalProject/Pages/_ViewStart.cshtml]
+[D:/FasiTahir/4th Semester/DB/Projects/Final Project/FinalProjectDB/FinalProject/Pages/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/FasiTahir/4th Semester/DB/FinalProjectDB/FinalProject/Pages/Shared/_Layout.cshtml]
+[D:/FasiTahir/4th Semester/DB/Projects/Final Project/FinalProjectDB/FinalProject/Pages/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-srxpow6wk7
